@@ -13,136 +13,122 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+const REFERRAL_LINK = "https://digidrops.xyz/ref/user123";
+const SHARE_TEXT = "Join me on Digi Drop and earn Stardust!";
+const STARDUST_REWARD = 200;
+
+const SOCIAL_PLATFORMS = [
+  { name: "WhatsApp", color: "#25D366", icon: FaWhatsapp, id: "whatsapp" },
+  { name: "Facebook", color: "#1877F2", icon: FaFacebookF, id: "facebook" },
+  { name: "Telegram", color: "#229ED9", icon: FaTelegram, id: "telegram" },
+  { name: "X", color: "#FFFFFF", icon: FaXTwitter, id: "x" },
+] as const;
+
 const ReferralSection = () => {
   const [copied, setCopied] = useState(false);
-  
-  // In production, this would likely come from user props or a store
-  const referralLink = "https://digidrops.xyz/ref/user123";
-
-  const socialButtons = [
-    { name: "WhatsApp", hex: "#25D366", icon: FaWhatsapp, id: "whatsapp" },
-    { name: "Facebook", hex: "#1877F2", icon: FaFacebookF, id: "facebook" },
-    { name: "Telegram", hex: "#229ED9", icon: FaTelegram, id: "telegram" },
-    { name: "X", hex: "#FFFFFF", icon: FaXTwitter, id: "x" },
-  ];
 
   const handleCopy = async () => {
     try {
-      if (typeof window !== "undefined" && navigator.clipboard) {
-        await navigator.clipboard.writeText(referralLink);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
+      await navigator.clipboard.writeText(REFERRAL_LINK);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Copy failed", err);
+      console.error("Clipboard failed", err);
     }
   };
 
-  const shareReferral = (platform: string) => {
-    // Updated text to match Digi Drop context
-    const text = encodeURIComponent(`Join me on Digi Drop and earn Stardust! ${referralLink}`);
+  const handleShare = (platform: string) => {
+    const text = encodeURIComponent(`${SHARE_TEXT} ${REFERRAL_LINK}`);
+    const url = encodeURIComponent(REFERRAL_LINK);
     
-    const urls: Record<string, string> = {
+    const links: Record<string, string> = {
       whatsapp: `https://wa.me/?text=${text}`,
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`,
-      telegram: `https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${text}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      telegram: `https://t.me/share/url?url=${url}&text=${text}`,
       x: `https://twitter.com/intent/tweet?text=${text}`,
     };
-    
-    if (urls[platform]) window.open(urls[platform], "_blank", "noreferrer");
+
+    if (links[platform]) {
+      window.open(links[platform], "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
-    <section className="relative w-full bg-[url('/assets_icon/background.png')] bg-cover bg-center bg-no-repeat py-12 md:py-20 lg:py-24">
-      {/* Optional: Dark overlay to ensure text readability if background is bright */}
-      {/* <div className="absolute inset-0 bg-black/40" /> */}
-
-      <div className="container relative z-10 mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+    <section className="relative flex min-h-screen w-full items-start bg-[url('/assets_icon/background.png')] bg-cover bg-center bg-no-repeat pt-20 pb-12 lg:pt-32 lg:pb-20">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
           
-          {/* Left Column: Content */}
-          <div className="flex flex-col items-center space-y-8 lg:items-start">
+          {/* Left: Content Column */}
+          <div className="flex flex-col items-center space-y-8 lg:items-start lg:space-y-12">
             
-            {/* Heading Text */}
-            <div className="space-y-4 text-center lg:text-left">
-              <h1 className="font-chakra text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl text-balance">
+            {/* Header Text */}
+            <header className="space-y-4 text-center lg:text-left">
+              <h1 className=" max-w-4xl bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text bg-[200%_auto] py-2 text-4xl font-extrabold leading-[1.15] text-transparent animate-gradient sm:text-5xl md:text-7xl"
+                         >
                 REFER & GET STARDUST
               </h1>
-              <p className="font-chakra text-lg text-gray-200 sm:text-xl max-w-lg mx-auto lg:mx-0 text-balance">
-                Share your referral link with friends & get 200 Stardust for every recruit.
+              <p className="mx-auto max-w-xl font-chakra text-lg text-gray-200 m:4 lg:mx-0">
+                Share your referral link with friends & {STARDUST_REWARD} Stardust for every recruit.
               </p>
-            </div>
+            </header>
 
-            {/* Copy Link Component */}
-            <div className="flex w-full max-w-lg items-stretch overflow-hidden rounded-lg border border-white/20 bg-black/30 backdrop-blur-sm transition-colors hover:border-white/40">
-              {/* Input Area */}
-              <div className="flex min-w-0 flex-1 items-center px-4 py-3">
-                <span className="truncate font-mono text-sm text-gray-300">
-                  {referralLink}
+            {/* Referral Link Box */}
+            <div className="flex w-full max-w-2xl items-stretch overflow-hidden rounded-xl border-2 border-white/10 bg-black/30 backdrop-blur-lg transition-all hover:border-white/30">
+              <div className="flex min-w-0 flex-1 items-center px-5 py-4">
+                <span className="truncate font-chakra text-sm text-gray-300 md:text-base">
+                  {REFERRAL_LINK}
                 </span>
               </div>
 
-              {/* Copy Button */}
               <Button
-                type="button"
                 onClick={handleCopy}
                 className={cn(
-                  "h-auto rounded-none px-6 py-3 font-semibold text-white transition-all sm:px-8",
-                  copied 
-                    ? "bg-green-600 hover:bg-green-700" 
-                    : "bg-[#A176D6] hover:bg-[#8e61c7]"
+                  "h-auto rounded-none px-6 py-4 font-chakra text-base font-bold transition-colors md:px-10",
+                  copied ? "bg-green-600 hover:bg-green-700" : "bg-[#A176D6] hover:bg-[#8e61c7]"
                 )}
               >
-                {copied ? <FaCheck className="mr-2 h-4 w-4" /> : <FaLink className="mr-2 h-4 w-4" />}
-                <span>{copied ? "Copied" : "Copy"}</span>
+                {copied ? <FaCheck className="mr-2" /> : <FaLink className="mr-2" />}
+                {copied ? "Copied" : "Copy"}
               </Button>
             </div>
 
-            {/* Social Share Section */}
-            <div className="flex w-full flex-col items-center space-y-4 lg:items-start">
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+            {/* Social Share Group */}
+            <div className="flex w-full flex-col items-center space-y-6 lg:items-start">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">
                 Share link through
-              </p>
+              </span>
               
-              <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
-                {socialButtons.map((social) => {
-                  const SocialIcon = social.icon;
-                  return (
-                    <Button
-                      key={social.id}
-                      type="button"
-                      size="icon"
-                      aria-label={`Share on ${social.name}`}
-                      onClick={() => shareReferral(social.id)}
-                      className="h-12 w-12 rounded-xl bg-[#A176D6] transition-transform hover:-translate-y-1 hover:bg-[#8e61c7] hover:shadow-lg"
-                    >
-                      <SocialIcon 
-                        className="h-6 w-6" 
-                        style={{ color: social.hex }} 
-                      />
-                    </Button>
-                  );
-                })}
+              <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
+                {SOCIAL_PLATFORMS.map(({ id, name, icon: Icon, color }) => (
+                  <Button
+                    key={id}
+                    size="icon"
+                    onClick={() => handleShare(id)}
+                    className="h-14 w-14 rounded-2xl bg-[#A176D6] transition-all hover:-translate-y-1 hover:bg-[#8e61c7] hover:shadow-lg hover:shadow-purple-500/40 md:h-16 md:w-16"
+                    aria-label={`Share on ${name}`}
+                  >
+                    <Icon size={28} style={{ color }} />
+                  </Button>
+                ))}
               </div>
               
-              <div className="mt-4 rounded-full bg-white/5 px-4 py-1 backdrop-blur-md">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-300 sm:text-xs">
-                  🚀 No cap! Earn as much Stardust as possible
+              <div className="mt-4 inline-block rounded-full bg-white/5 px-6 py-2 backdrop-blur-sm border border-white/10">
+                <p className="font-chakra text-xs font-bold text-gray-300 sm:text-sm">
+                  No cap! Earn as much Stardust as possible
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Illustration */}
-          {/* Hidden on mobile to prioritize content, visible on large screens */}
-          <div className="hidden justify-center lg:flex">
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] hover:shadow-purple-500/20">
+          {/* Right: Illustration (Hidden on mobile/tablet, visible on desktop) */}
+          <div className="hidden items-center justify-center lg:flex lg:justify-end">
+            <div className="relative w-full max-w-xl transition-transform duration-700 hover:scale-[1.02]">
               <Image
                 src="/assets_icon/Mask.png"
-                alt="Referral Illustration"
-                width={600}
-                height={500}
-                className="h-auto w-full object-cover"
+                alt="Referral rewards illustration"
+                width={800}
+                height={700}
+                className="h-auto w-full drop-shadow-2xl"
                 priority
               />
             </div>
