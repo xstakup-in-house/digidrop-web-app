@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay, ease: "easeOut" },
+  transition: { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] as const },
   viewport: { once: true },
 })
 
@@ -75,7 +75,7 @@ const BenefitSection: React.FC = () => {
           alt="Gather Stardust"
           width={120}
           height={120}
-          className="h-auto w-auto object-contain drop-shadow-lg"
+          className="object-contain drop-shadow-lg"
         />
       ),
       heading: "Gather Stardust",

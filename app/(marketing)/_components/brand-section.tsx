@@ -22,7 +22,7 @@ const fadeUp = {
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } 
   },
 };
 
@@ -49,14 +49,15 @@ const BrandSupport = () => {
         {/* Brands Grid */}
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4 place-items-center">
           {brands.map((logo, index) => (
+            <div key={index} className="relative h-16 w-40">
             <Image
               key={index}
               src={logo}
               alt={`Brand ${index + 1}`}
-              width={160}
-              height={64}
+              fill
               className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition duration-300"
             />
+            </div>
           ))}
         </div>
       </div>
