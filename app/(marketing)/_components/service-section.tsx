@@ -69,13 +69,14 @@ const ServiceSection = () => {
             >
               {/* Icon Wrapper for consistent height */}
               <div className="mb-6 flex h-[160px] w-full items-center justify-center">
+                <div className="relative h-[130px] w-[150px]">
                 <Image
                   src={step.icon}
                   alt={step.title}
-                  width={130}
-                  height={150}
-                  className="h-auto w-auto object-contain drop-shadow-lg"
+                  fill
+                  className="object-contain drop-shadow-lg"
                 />
+                </div>
               </div>
 
               {/* Text Content */}
