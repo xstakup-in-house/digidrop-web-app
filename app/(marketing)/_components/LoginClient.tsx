@@ -19,6 +19,7 @@ import { useUserStore } from '@/store/useUserProfile'
 import { getNonce, walletLogin } from '@/actions/user'
 import { getProfile } from '@/app/data/profile/profile'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const LoginClient = () => {
   const { address, isConnected} = useConnection()
@@ -121,6 +122,22 @@ const handleAuthentication = async () => {
           <CardContent className="flex flex-col items-center justify-center pb-8 pt-4">
             {/* ConnectWalletButton component */}
             <ConnectWalletButton />
+            {isConnected && address && (
+              <>
+               <Button
+                  onClick={handleAuthentication}
+                  disabled={loading}
+                  className="px-10 py-3 mt-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl"
+                  >
+                    {!isCorrectChain ? 'Wrong network' : 'Continue'}
+                  </Button>
+                  {!isCorrectChain && (
+                    <p className="mt-2 text-orange-400 text-xs">
+                      On {chainId ? `Chain ${chainId}` : 'Unknown'} (Need {targetChainId})
+                    </p>
+                  )}
+              </>
+            )}
             
             <p className="mt-4 font-chakra text-center  text-sm tracking-wide text-gray-400">
               Connect your wallet for secure login
