@@ -13,12 +13,13 @@ const chakra = Chakra_Petch({
 
 
 
+
 export const metadata: Metadata = {
-  title: "Digidrop -web3",
-  description: "Web3 Growth & Marketing Community",
+  title: "DigiDrops - web3",
+  description: "A brief description of your website for SEO",
   icons: {
-      icon: "assets/favicon.png", 
-    },
+    icon: "assets/favicon.png", 
+  },
 };
 
 export default function RootLayout({
