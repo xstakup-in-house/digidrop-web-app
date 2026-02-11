@@ -23,13 +23,14 @@ const DashboardUi = () => {
   const router = useRouter()
   const profile = useUserStore((state) => state.profile)
   const { data: api_data, isLoading } = useProfileStats()
-
+  
+  
   const positionData = {
     icon: ArrowUpIcon,
     text: "Position",
     value: api_data?.rank,
   }
-  console.log("profile res:", api_data)
+ 
   const passData = {
     icon: "/assets/star.png",
     midText: "POWER ON YOUR SB PASS",
@@ -45,6 +46,7 @@ const DashboardUi = () => {
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#1f0e49]/30 via-[#004AAD]/50 to-[#1c1c1c]">
       <div className="mx-auto max-w-7xl px-4 py-10">
+        
 
         {/* HEADER */}
         <div className="flex flex-col items-center gap-6 text-center">
@@ -72,7 +74,7 @@ const DashboardUi = () => {
           <DailySpinCard targetDate="2025-06-01T12:00:00Z" />
           <InfoCard data={referralData} isLoading={isLoading} />
 
-          <Button className="w-full bg-[#333333] border border-gray-400">
+          <Button onClick={()=> router.push("/referrals")} className="w-full bg-[#333333] border border-gray-400">
             REFERRAL LINK
           </Button>
 

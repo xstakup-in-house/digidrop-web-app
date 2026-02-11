@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa6"; 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useUserStore } from "@/store/useUserProfile";
 
 const REFERRAL_LINK = "https://digidrops.xyz/ref/user123";
 const SHARE_TEXT = "Join me on Digi Drop and earn Stardust!";
@@ -25,11 +26,12 @@ const SOCIAL_PLATFORMS = [
 ] as const;
 
 const ReferralSection = () => {
+  const refLink = useUserStore((state) => state.referralLink)
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(REFERRAL_LINK);
+      await navigator.clipboard.writeText(refLink);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -38,8 +40,8 @@ const ReferralSection = () => {
   };
 
   const handleShare = (platform: string) => {
-    const text = encodeURIComponent(`${SHARE_TEXT} ${REFERRAL_LINK}`);
-    const url = encodeURIComponent(REFERRAL_LINK);
+    const text = encodeURIComponent(`${SHARE_TEXT} ${refLink}`);
+    const url = encodeURIComponent(refLink);
     
     const links: Record<string, string> = {
       whatsapp: `https://wa.me/?text=${text}`,
@@ -76,7 +78,7 @@ const ReferralSection = () => {
             <div className="flex w-full max-w-2xl items-stretch overflow-hidden rounded-xl border-2 border-white/10 bg-black/30 backdrop-blur-lg transition-all hover:border-white/30">
               <div className="flex min-w-0 flex-1 items-center px-5 py-4">
                 <span className="truncate font-chakra text-sm text-gray-300 md:text-base">
-                  {REFERRAL_LINK}
+                  {refLink}
                 </span>
               </div>
 

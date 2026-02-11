@@ -21,7 +21,7 @@ export default function PassActionButton({ pass }: Props) {
   const currentPower = profile?.current_pass_power;
   const isCurrent = profile?.current_pass_id === pass.id;
   const isUpgrade = pass.point_power > currentPower;
-
+  console.log("isUpgrade:", isUpgrade)
   // Current pass
   if (isCurrent) {
     return (

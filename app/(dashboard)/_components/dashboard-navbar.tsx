@@ -188,7 +188,7 @@ const DashboardNavbar = () => {
             <div className="hidden sm:flex items-center gap-2 lg:gap-3 min-w-0">
 
               {/*profile Link */}
-              <Link href = "/profile">
+              <Link href = "/profile/edit">
               <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
               </Link>
 
@@ -385,10 +385,6 @@ const DashboardNavbar = () => {
           </Sheet>
         </div>
       </header>
-
-      {/* ============================================================================ */}
-      {/* MODALS */}
-      {/* ============================================================================ */}
 
       <AnimatePresence>
         {/* Beta Modal */}

@@ -1,6 +1,6 @@
-import SettingsModal from "./_components/SettingModal";
+import { redirect } from "next/navigation";
 
 
 export default function Page() {
-  return <SettingsModal />;
+  return redirect("/profile/edit");
 }

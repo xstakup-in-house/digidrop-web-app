@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, useCallback, memo } from "react";
 import { X, Loader2, AlertCircle, Camera, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { apiClient } from "@/apiClient/client";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -16,6 +17,12 @@ const toast = {
   error: (msg: string) => console.error(`Error: ${msg}`),
 };
 
+
+interface AvatarOption {
+  id: number;
+  image_url: string;
+}
+
 // ----------------------------------------------------------------------
 // TYPES
 // ----------------------------------------------------------------------
@@ -23,6 +30,12 @@ interface UserData {
   username: string;
   email: string;
   avatarUrl: string;
+}
+
+interface Userpayload{
+  names: string;
+  email: string;
+  avatar_id: number
 }
 
 interface SettingsModalProps {
@@ -156,19 +169,7 @@ const SettingsField = memo(({
           )}
         </div>
 
-        {/* Text Action Button - Positioned to the right */}
-        <button
-          type="button"
-          onClick={isEditing ? handleSave : () => setIsEditing(true)}
-          className={cn(
-            "ml-3 px-2 py-1 text-[10px] font-bold uppercase tracking-wider rounded transition-colors duration-200 focus:outline-none",
-            isEditing
-              ? "bg-purple-600 text-white hover:bg-purple-500"
-              : "text-purple-400 hover:text-purple-300 bg-transparent" // No background on hover
-          )}
-        >
-          {isEditing ? "Save" : "Edit"}
-        </button>
+       
       </div>
     </div>
   );
@@ -189,9 +190,16 @@ const SettingsModal = ({
   onBackToDashboard,
 }: SettingsModalProps) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [avatarOptions, setAvatarOptions] = useState<AvatarOption[]>([]);
   const [formData, setFormData] = useState<UserData>(initialData);
   const [hasChanges, setHasChanges] = useState(false);
   const [isAvatarMenuOpen, setIsAvatarMenuOpen] = useState(false);
+     useEffect(() => {
+      apiClient
+        .get("/avatars") // Adjust endpoint if needed
+        .then((res) => setAvatarOptions(res.data))
+        .catch(() => toast.error("Failed to load avatars"));
+    }, []);
 
   const validateUsername = (val: string) => {
     if (val.length < 3) return "Min 3 chars required";
@@ -268,16 +276,16 @@ const SettingsModal = ({
             "w-full grid grid-cols-5 gap-3 mt-4 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] bg-white/5 rounded-xl px-2",
             isAvatarMenuOpen ? "max-h-[300px] py-4 opacity-100 border border-white/10" : "max-h-0 py-0 opacity-0 border-none"
           )}>
-            {AVATAR_OPTIONS.map((avatar, index) => (
+            {avatarOptions.map((avatar, index) => (
               <button
                 key={index}
-                onClick={() => handleFieldUpdate("avatarUrl", avatar)}
+                onClick={() => handleFieldUpdate("avatarUrl", avatar.image_url)}
                 className={cn(
                   "aspect-square rounded-full border-2 overflow-hidden transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-purple-500",
-                  formData.avatarUrl === avatar ? "border-purple-500 ring-2 ring-purple-500/20 scale-110" : "border-transparent opacity-60 hover:opacity-100"
+                  formData.avatarUrl === avatar.image_url ? "border-purple-500 ring-2 ring-purple-500/20 scale-110" : "border-transparent opacity-60 hover:opacity-100"
                 )}
               >
-                <img src={avatar} alt="" className="w-full h-full object-cover" />
+                <img src={avatar.image_url} alt="" className="w-full h-full object-cover" />
               </button>
             ))}
           </div>

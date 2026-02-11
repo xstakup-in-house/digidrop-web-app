@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import React from 'react'
 import BoardTable from '../../_components/leaderboard/board-table'
 import Position from '../../_components/leaderboard/position'

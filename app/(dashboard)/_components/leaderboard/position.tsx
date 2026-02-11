@@ -5,16 +5,24 @@ import React from 'react'
 
 
 const Position = () => {
-    const { data, isLoading } = useProfileStats();
-    if(isLoading){
-       return  <p>Loading stats ...</p>
-    }
+  const { data, isLoading } = useProfileStats()
+
+  if (isLoading) {
+    return <p className="text-white">Loading stats ...</p>
+  }
+
   return (
-    <div className="flex items-center py-4 mt-10 text-white justify-between">
-        <h2 className='text-4xl font-bold font-chakra'>LEADERBOARD</h2>
-        <span className='text-3xl font-s  emibold font-chakra'>YOUR POSITION : {data.point}/{data.highest_point}</span>
+    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mt-10 text-white">
+      <h2 className="text-2xl md:text-4xl font-bold font-chakra">
+        LEADERBOARD
+      </h2>
+
+      <span className="text-lg md:text-2xl font-semibold font-chakra">
+        Your Position: {data.point}/{data.highest_point}
+      </span>
     </div>
   )
 }
+
 
 export default Position 
