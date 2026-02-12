@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.next-image-fix img {
+  height: auto !important;
+}
 .font-chakra {
   font-family: var(--font-chakra-petch);
 }

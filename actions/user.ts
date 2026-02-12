@@ -37,6 +37,7 @@ console.log("login payload:", payload)
 type RequestPayload={
   names: string
   email: string
+  avatar_id: number
 }
 
 export async function updateProfile(payload:RequestPayload) {

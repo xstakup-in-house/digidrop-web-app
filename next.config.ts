@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+
   images: {
     // Option 1: Simple (allows all Cloudinary subdomains)
     remotePatterns: [

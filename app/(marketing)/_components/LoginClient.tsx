@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef} from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import dynamic from "next/dynamic"
 
@@ -10,7 +10,7 @@ import { ConnectWalletButton } from '@/components/common/WalletConnectButton'
 import { toast } from 'sonner'
 
 // Web3 Imports
-import { useAccount, useDisconnect, useSignMessage } from 'wagmi'
+import { useAccount, useDisconnect, useSignMessage,useChainId, useConnection } from 'wagmi'
 import { bsc } from 'viem/chains'
 import { bscTestnet } from '@/lib/chain'
 
@@ -19,60 +19,91 @@ import { useUserStore } from '@/store/useUserProfile'
 import { getNonce, walletLogin } from '@/actions/user'
 import { getProfile } from '@/app/data/profile/profile'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const LoginClient = () => {
-  const { address, isConnected, chainId } = useAccount();
-  const { signMessageAsync } = useSignMessage();
-  const { disconnect } = useDisconnect();
-
+  const { address, isConnected} = useConnection()
+  const chainId = useChainId();
+  const disconnect = useDisconnect()
+  const nonceRef = useRef<string | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const refCode = searchParams.get('ref') || undefined;
-
   const [loading, setLoading] = useState(false);
-  const allowedChainIds = process.env.NODE_ENV === 'development'
-    ? [bscTestnet.id]
-    : [bsc.id];
+  const allowedChainIds =  [bscTestnet.id];
+  const targetChainId = allowedChainIds[0];
 
-  const { setProfile } = useUserStore();
-
-  useEffect(() => {
-    if (!isConnected || !address) return;
-
-    const handleAuthentication = async () => {
-      if (chainId && !allowedChainIds.includes(chainId)) {
-        toast.error('Wrong network. Please switch network.');
-        return;
-      }
-
-      setLoading(true);
-
+  const signMessage = useSignMessage({
+  mutation: {
+    onSuccess: async (signature) => {
       try {
-        const { nonce, message } = await getNonce();
-        const signature = await signMessageAsync({ message });
-
-        if (refCode) {
-          await walletLogin(address, signature, nonce, refCode);
-        } else {
-          await walletLogin(address, signature, nonce);
+        if (!nonceRef.current || !address) {
+          throw new Error('Missing auth data');
         }
 
-        const profile = await getProfile();
-        setProfile(profile);
-
-        router.replace(profile.has_pass ? '/dashboard' : '/buy-pass');
+        if (refCode) {
+          await walletLogin(address, signature, nonceRef.current, refCode);
+        } else {
+          await walletLogin(address, signature, nonceRef.current);
+        }
+         
         toast.success('Logged in successfully');
+        router.replace('/post-login');
       } catch (err) {
         console.error(err);
-        toast.error('Wallet login failed');
-        disconnect();
+        disconnect.mutate()
+        toast.error('Login failed');
       } finally {
-        setLoading(false);
+          nonceRef.current = null;
+          setLoading(false);
       }
-    };
+    },
+    onError: () => {
+      nonceRef.current = null;
+      toast.error('Signature rejected');
+      disconnect.mutate()
+      setLoading(false);
+    },
+  },
+});
 
-    handleAuthentication();
-  }, [isConnected, address]);
+
+  
+const handleAuthentication = async () => {
+  if (loading) return;
+  
+  if (!isConnected || !address) {
+    toast.error('Connect wallet first');
+    return;
+  }
+
+  if (!allowedChainIds.includes(chainId)) {
+    toast.error('Please switch to BSC network');
+    return;
+  }
+
+  setLoading(true);
+
+  try {
+    const { nonce, message } = await getNonce();
+    nonceRef.current = nonce;
+
+    // IMPORTANT: slight delay helps MetaMask mobile
+    setTimeout(() => {
+      signMessage.mutate({ message });
+    }, 100);
+
+  } catch (err) {
+    setLoading(false);
+    toast.error('Failed to prepare signature');
+  }
+};
+
+
+  const isCorrectChain = chainId && allowedChainIds.includes(chainId);
+  
+  
+  
 
   return (
     
@@ -91,6 +122,22 @@ const LoginClient = () => {
           <CardContent className="flex flex-col items-center justify-center pb-8 pt-4">
             {/* ConnectWalletButton component */}
             <ConnectWalletButton />
+            {isConnected && address && (
+              <>
+               <Button
+                  onClick={handleAuthentication}
+                  disabled={loading}
+                  className="px-10 py-3 mt-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl"
+                  >
+                    {!isCorrectChain ? 'Wrong network' : 'Continue'}
+                  </Button>
+                  {!isCorrectChain && (
+                    <p className="mt-2 text-orange-400 text-xs">
+                      On {chainId ? `Chain ${chainId}` : 'Unknown'} (Need {targetChainId})
+                    </p>
+                  )}
+              </>
+            )}
             
             <p className="mt-4 font-chakra text-center  text-sm tracking-wide text-gray-400">
               Connect your wallet for secure login

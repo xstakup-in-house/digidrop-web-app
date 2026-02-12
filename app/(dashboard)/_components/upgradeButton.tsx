@@ -6,9 +6,7 @@ import { toast } from 'sonner';
 import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt, useReadContract } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import PassNFT_ABI from '@/contract/abi.json';
-
 import { PassInfo } from '@/types/response-type';
-import { verifyPayment } from '@/actions/app';
 import { useRouter } from 'next/navigation';
 
 const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
@@ -39,7 +37,7 @@ export default function UpgradeButton({ pass }: { pass: Pass }) {
 
   const [deltaWei, setDeltaWei] = useState<bigint | null>(null);
   const [loadingPrice, setLoadingPrice] = useState(true);
-
+  
   const { data: userPass } = useReadContract({
     address: CONTRACT_ADDRESS,
     abi: PassNFT_ABI,
@@ -49,6 +47,8 @@ export default function UpgradeButton({ pass }: { pass: Pass }) {
   });
 
 const userPassTuple = userPass as [bigint, bigint] | undefined;
+console.log("user address:", address)
+console.log("user current pass from contract in tuple:", userPassTuple)
   // userPassData is [bigint, bigint] or undefined
 const currentPassId = userPassTuple ? Number(userPassTuple[0]) : 0;
 
@@ -61,7 +61,7 @@ const currentPassId = userPassTuple ? Number(userPassTuple[0]) : 0;
     args: currentPassId > 0 ? [BigInt(currentPassId)] : undefined,
     query: { enabled: currentPassId > 0 },
   });
-
+  console.log("user current pass:",currentPassRaw)
   const { data: newPass } = useReadContract({
         address: CONTRACT_ADDRESS,
         abi: PassNFT_ABI,
@@ -71,7 +71,7 @@ const currentPassId = userPassTuple ? Number(userPassTuple[0]) : 0;
               enabled: mounted && isConnected,
           },
         });
-
+console.log("selected pass:", newPass)
  const currentPass = currentPassRaw as PassInfo | undefined;
  const upgradePass = newPass as PassInfo | undefined;
   useEffect(() => {
@@ -103,12 +103,6 @@ const currentPassId = userPassTuple ? Number(userPassTuple[0]) : 0;
   // Verification after success
   useEffect(() => {
     if (isConfirmed && hash) {
-      // verifyPayment({txHash:hash, newPassId: pass.pass_id, isUpgrade: true})
-      //   .then(() => {
-      //     toast.success(`${pass.name} upgraded!`);
-      //     router.replace('/dashboard');
-      //   })
-      //   .catch(() => toast.error('Verification failed'));
       toast.success('Pass upgraded successful 🎉');
       router.replace('/dashboard');
     }

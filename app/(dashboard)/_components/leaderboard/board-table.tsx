@@ -7,6 +7,7 @@ type LeaderBoard={
     names: string,
     wallet: string,
     scored_point: number,
+    avatar?: string | null
     color?: string
 }
 
@@ -20,35 +21,45 @@ const COLORS = [
 ]
 
 const BoardTable = () => {
+  const { data, isLoading } = useGetLeaderboardStats()
 
-    const {data, isLoading} = useGetLeaderboardStats()
-    
-    if(isLoading){
-        return <p>Loading position ...</p>
-    }
+  if (isLoading) {
+    return <p className="text-white">Loading position ...</p>
+  }
+
   return (
-    <table className='w-full'>
-        <thead className='w-full border-t border-b py-4 border-y-white/40 '>
-            <tr className='grid grid-cols-3 gap-2 py-2 text-white'>
-                <th>POSITION</th>
-                <th>WALLET ADDRESS</th>
-                <th>TOTAL POINTS</th>
-            </tr>  
+    <div className="overflow-x-auto rounded-lg border border-white/20">
+      <table className="w-full border-collapse text-white">
+        <thead className="bg-white/10">
+          <tr>
+            <th className="px-4 py-3 text-left text-sm font-semibold">
+              Position
+            </th>
+            <th className="px-4 py-3 text-left text-sm font-semibold">
+              Wallet Address
+            </th>
+            <th className="px-4 py-3 text-right text-sm font-semibold">
+              Total Points
+            </th>
+          </tr>
         </thead>
+
         <tbody>
-            {data.map((row:LeaderBoard, idx:number) => (
-                <TableRow
-                    key={row.rank || idx}
-                    data={{
-                        ...row,
-                        color: COLORS[idx % COLORS.length],
-                    }}
-                    />
-            ))}
+          {data.map((row: LeaderBoard, idx: number) => (
+            <TableRow
+              key={row.rank || idx}
+              data={{
+                ...row,
+                color: COLORS[idx % COLORS.length],
+              }}
+            />
+          ))}
         </tbody>
-    </table>
+      </table>
+    </div>
   )
 }
+
 
 export default BoardTable
 
@@ -58,17 +69,47 @@ type RowProp ={
         names: string,
         wallet: string,
         scored_point: number,
+        avatar?: string | null
         color?: string
     },
     
 }
 
-const TableRow = ({data}:RowProp)=>{
-    return (
-        <tr style={{ backgroundColor: data.color }} className={`grid grid-cols-4 gap-2 border mb-2 text-white box-border w-full h-full py-4`}>
-            <td className='text-md font-medium text-center'>{data.rank}</td>
-            <td className='text-md font-medium text-center'>{data?.wallet}</td>
-            <td className='text-md font-medium text-center'>{data?.scored_point}</td>
-        </tr>
-    )
+const TableRow = ({ data }: RowProp) => {
+  return (
+    <tr
+      style={{ backgroundColor: data.color }}
+      className="border-b border-white/10 hover:bg-white/10 transition"
+    >
+      <td className="px-4 py-3 font-medium">
+        #{data.rank}
+      </td>
+
+       <td className="px-4 py-3 max-w-[260px]">
+        <div className="flex items-center gap-3">
+          {/* Avatar */}
+          {data.avatar ? (
+            <img
+              src={data.avatar}
+              alt="avatar"
+              className="w-8 h-8 rounded-full object-cover border border-white/30"
+            />
+          ) : (
+            <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs">
+              ?
+            </div>
+          )}
+
+          {/* Wallet */}
+          <span className="truncate">
+            {data.wallet}
+          </span>
+        </div>
+      </td>
+
+      <td className="px-4 py-3 text-right font-semibold">
+        {data.scored_point}
+      </td>
+    </tr>
+  )
 }

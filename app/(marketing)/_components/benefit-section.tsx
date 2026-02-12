@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay, ease: "easeOut" },
+  transition: { duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] as const },
   viewport: { once: true },
 })
 
@@ -57,52 +57,56 @@ const BenefitSection: React.FC = () => {
   const cards = [
     {
       icon: (
+        <div className="relative h-[120px] w-[120px]">
         <Image
           src="/assets_icon/22.png"
           alt="Cosmic Curiosity"
-          width={120}
-          height={120}
-          className="h-auto w-auto object-contain drop-shadow-lg"
+          fill
+          className="object-contain drop-shadow-lg"
         />
+        </div>
       ),
       heading: "Cosmic Curiosity",
       text: "Mint a one of a kind Passport to unlock an ever-expanding universe of interactive quests and collaborative discoveries.",
     },
     {
       icon: (
+        <div className="relative h-[120px] w-[120px]">
         <Image
           src="/assets_icon/19.png"
           alt="Gather Stardust"
-          width={120}
-          height={120}
-          className="h-auto w-auto object-contain drop-shadow-lg"
+          fill
+          className="object-contain drop-shadow-lg"
         />
+       </div>
       ),
       heading: "Gather Stardust",
       text: "Engage in inspiring activities to collect Stardust. It is not currency, it is glory. Illuminate your path on the community leaderboard.",
     },
     {
       icon: (
+        <div className="relative h-[120px] w-[120px]">
         <Image
           src="/assets_icon/2.png"
           alt="Eternal Bonds"
-          width={120}
-          height={120}
-          className="h-auto w-auto object-contain drop-shadow-lg"
+          fill
+          className="object-contain drop-shadow-lg"
         />
+        </div>
       ),
       heading: "Eternal Bonds",
       text: "Invite fellow travelers to expand the constellation, creating lasting connections and collective adventures across the digital cosmos.",
     },
     {
       icon: (
+        <div className="relative h-[120px] w-[120px]">
         <Image
           src="/assets_icon/3.png"
           alt="Loyalty Honors"
-          width={120}
-          height={120}
-          className="h-auto w-auto object-contain drop-shadow-lg"
+          fill
+          className="object-contain drop-shadow-lg"
         />
+        </div>
       ),
       heading: "Loyalty Honors",
       text: "Dedicated explorers receive exquisite digital badges and role upgrades, honoring your enduring role in our shared galactic story.",

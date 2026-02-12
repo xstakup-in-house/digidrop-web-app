@@ -1,9 +1,14 @@
 
+export interface AvatarOption {
+  id: number;
+  image_url: string;
+}
 
 export interface UserProfile {
   id: number
   names: string;
   email: string;
+  avatar: AvatarOption;
   current_pass_id: string;
   current_pass_power: number
   wallet_addr: string;

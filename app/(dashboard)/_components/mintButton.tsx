@@ -185,13 +185,6 @@ useEffect(() => {
         </button>
       )}
 
-      <Button
-          onClick={handleDisconnect}
-          disabled={isConnecting}
-          className="px-6 py-3"
-          >
-             for test Disconnecting Wallet
-          </Button>
     </div>
   );
 }
