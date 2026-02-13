@@ -20,6 +20,12 @@ const COLORS = [
   "#F945C6",
 ]
 
+
+const formatWellet = (address: string) => {
+  if (!address)   return "Unknown Wallet";
+  return `${address.slice(0, 6)}...${address.slice(-4)}`
+}
+
 const BoardTable = () => {
   const { data, isLoading } = useGetLeaderboardStats()
 
@@ -35,11 +41,11 @@ const BoardTable = () => {
             <th className="px-4 py-3 text-left text-sm font-semibold">
               Position
             </th>
-            <th className="px-4 py-3 text-left text-sm font-semibold">
+            <th className="px-4 py-3 text-center text-sm font-semibold">
               Wallet Address
             </th>
             <th className="px-4 py-3 text-right text-sm font-semibold">
-              Total Points
+              Stardusts
             </th>
           </tr>
         </thead>
@@ -86,7 +92,7 @@ const TableRow = ({ data }: RowProp) => {
       </td>
 
        <td className="px-4 py-3 max-w-[260px]">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 justify-center">
           {/* Avatar */}
           {data.avatar ? (
             <img
@@ -102,7 +108,7 @@ const TableRow = ({ data }: RowProp) => {
 
           {/* Wallet */}
           <span className="truncate">
-            {data.wallet}
+            {formatWellet (data.wallet)}
           </span>
         </div>
       </td>

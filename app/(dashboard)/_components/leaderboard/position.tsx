@@ -18,7 +18,7 @@ const Position = () => {
       </h2>
 
       <span className="text-lg md:text-2xl font-semibold font-chakra">
-        Your Position: {data.point}/{data.highest_point}
+        My Position: {data.point}/{data.highest_point}
       </span>
     </div>
   )

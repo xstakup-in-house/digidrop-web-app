@@ -174,7 +174,7 @@ const DashboardNavbar = () => {
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <Link href="/" className="shrink-0">
               <Image 
-                src="/assets_icon/25.png" 
+                src="/assets/logo.png" 
                 alt="DigiDrop Logo" 
                 height={40} 
                 width={40} 
@@ -189,7 +189,18 @@ const DashboardNavbar = () => {
 
               {/*profile Link */}
               <Link href = "/profile/edit">
-              <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
+              {profile?.avatar ? (
+                
+                <img 
+                  src={profile?.avatar} 
+                  alt="Profile" 
+                  className="w-6 h-6 lg:w-7 lg:h-7 rounded-full object-cover border border-[#CB6CE6]"
+                />
+              ) : (
+                
+                <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
+              )}
+              
               </Link>
 
               <div className="flex items-center gap-2 min-w-0">
@@ -220,7 +231,7 @@ const DashboardNavbar = () => {
                   onClick={link.onClick}
                   className={`transition-colors whitespace-nowrap ${
                     link.highlight 
-                      ? "text-[#CB6CE6] hover:text-[#d886ee]" 
+                      ? "text-purple-400 hover:text-purple-500" 
                       : "hover:text-gray-300"
                   }`}
                 >
@@ -254,26 +265,19 @@ const DashboardNavbar = () => {
               <div className="flex items-center gap-3">
                 <div className="text-right">
                   <p className="text-[10px] uppercase text-gray-500 leading-none">
-                    High Score
+                    Position
                   </p>
-                  <p className="text-sm font-bold text-gray-200">
+                  <p className="text-sm font-bold text-gray-200 text-center">
                     {apiData.highest_point || 0}
                   </p>
                 </div>
                 
-                <Image 
-                  src="/assets_icon/25.png" 
-                  alt="Rank icon" 
-                  width={24} 
-                  height={24} 
-                  className="shrink-0"
-                />
                 
                 <div className="text-left">
                   <p className="text-[10px] uppercase text-gray-500 leading-none">
-                    Points
+                    My Stardust
                   </p>
-                  <p className="text-sm font-bold text-[#CB6CE6]">
+                  <p className="text-sm font-bold text-[#CB6CE6] text-center">
                     {apiData.point || 0}
                   </p>
                 </div>
@@ -331,7 +335,7 @@ const DashboardNavbar = () => {
                         onClick={() => handleNavClick(link.onClick)} 
                         className={`text-left transition-colors ${
                           link.highlight 
-                            ? "text-[#CB6CE6]" 
+                            ? "text-purple-400" 
                             : "text-gray-300 hover:text-white"
                         }`}
                       >
@@ -356,17 +360,17 @@ const DashboardNavbar = () => {
                     <div className="flex justify-between items-center bg-white/5 p-3 sm:p-4 rounded-lg">
                       <div>
                         <p className="text-[10px] text-gray-500 uppercase leading-none mb-1">
-                          Current Points
+                          Position
                         </p>
-                        <p className="text-lg sm:text-xl font-bold text-[#CB6CE6]">
+                        <p className="text-lg sm:text-xl font-bold text-purple-400">
                           {apiData.point || 0}
                         </p>
                       </div>
                       <div className="text-right">
                         <p className="text-[10px] text-gray-500 uppercase leading-none mb-1">
-                          High Score
+                         My Stardust 
                         </p>
-                        <p className="text-sm sm:text-base font-bold text-white">
+                        <p className="text-sm sm:text-base font-bold text-white text-">
                           {apiData.highest_point || 0}
                         </p>
                       </div>
@@ -374,10 +378,10 @@ const DashboardNavbar = () => {
                   )}
                   
                   <Button 
-                    className="w-full bg-[#CB6CE6] text-black hover:bg-[#b54cd4] font-medium h-11 sm:h-12"
+                    className="w-full bg-purple-400 text-black hover:bg-purple-500 font-medium h-11 sm:h-12"
                     onClick={() => handleNavClick(() => setIsBetaDialogOpen(true))}
                   >
-                    Beta Access
+                    Beta
                   </Button>
                 </div>
               </div>
@@ -420,7 +424,7 @@ const DashboardNavbar = () => {
                 </p>
                 <Button 
                   onClick={() => closeModal(setIsBetaDialogOpen)} 
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white py-5 sm:py-6 text-sm sm:text-base"
+                  className="w-full bg-purple-400 hover:bg-purple-500 text-white py-5 sm:py-6 text-sm sm:text-base"
                 >
                   Close Transmission
                 </Button>
@@ -460,7 +464,7 @@ const DashboardNavbar = () => {
               <div className="border-t border-white/10 p-3 sm:p-4 text-right">
                 <Button 
                   onClick={() => closeModal(setIsHowToPlayDialogOpen)} 
-                  className="bg-purple-600 hover:bg-purple-500 text-sm sm:text-base"
+                  className="bg-purple-400 hover:bg-purple-500 text-sm sm:text-base"
                 >
                   Close
                 </Button>
@@ -509,7 +513,7 @@ const DashboardNavbar = () => {
               <div className="border-t border-white/10 p-3 sm:p-4 bg-[#121212]">
                 <p className="text-center text-xs text-gray-500">
                   Need more help? Join our{" "}
-                  <span className="text-purple-400 cursor-pointer underline hover:text-purple-300 transition-colors">
+                  <span className="text-purple-400 cursor-pointer underline hover:text-purple-500 transition-colors">
                     Discord channel
                   </span>
                   .
