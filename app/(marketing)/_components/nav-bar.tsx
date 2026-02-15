@@ -248,7 +248,7 @@ const Navbar: React.FC = () => {
               </div>
 
               {/* Modal Footer */}
-              <div className="border-t border-white/10 bg-[#181818] px-6 py-4 text-right">
+              <div className="border-t border-white/10 px-6 py-4 text-right">
                 <Button
                   onClick={() => setIsHowToPlayDialogOpen(false)}
                   className="bg-purple-600 font-chakra hover:bg-purple-500 text-white"

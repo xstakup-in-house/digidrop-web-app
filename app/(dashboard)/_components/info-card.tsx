@@ -35,7 +35,7 @@ const InfoCard = ({ data, isLoading }: InfoProp) => {
 
       {/* CENTER */}
       {midText && (
-        <p className="hidden sm:block text-sm text-gray-400">
+        <p className="text-sm text-gray-400">
           {midText}
         </p>
       )}

@@ -13,14 +13,14 @@ const fadeUp = {
 
 const LeaderBoard = () => {
   return (
-    <div className="w-full min-h-screen py-8  bg-[url('/assets/leaderborad.png')] bg-cover bg-center bg-no-repeat bg-black/20">
+    <div className="w-full min-h-screen py-8  bg-[url('/assets/leaderborad.jpg')] bg-cover bg-center bg-no-repeat bg-black/20">
         <div className='container max-w-5xl mx-auto pt-10'>
         <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={fadeUp}
-                    className="flex w-fit mb-4 mx-auto rounded-full px-4 py-1.5 backdrop-blur-sm justify-center items-center"
+                    className="flex w-fit mb-4 mx-auto rounded-full bg-blue-500/10 px-4 py-1.5 backdrop-blur-sm justify-center items-center"
                   >
                     <span className="text-sm font-bold uppercase tracking-wider text-blue-400 sm:text-base">
                       Season 1
