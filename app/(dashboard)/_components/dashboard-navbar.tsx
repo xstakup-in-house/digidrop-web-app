@@ -254,7 +254,7 @@ const DashboardNavbar = () => {
             <Button 
               variant="outline" 
               onClick={() => setIsBetaDialogOpen(true)} 
-              className="border-purple-500/50 bg-transparent text-gray hover:bg-purple-900/20 text-sm"
+              className="border-purple-500/50 bg-purple-400 text-gray hover:bg-purple-500 text-sm"
             >
               Beta
             </Button>
@@ -264,7 +264,7 @@ const DashboardNavbar = () => {
             {!isLoading && apiData && (
               <div className="flex items-center gap-3">
                 <div className="text-right">
-                  <p className="text-[10px] uppercase text-gray-500 leading-none">
+                  <p className="text-[10px] uppercase text-white leading-none">
                     Position
                   </p>
                   <p className="text-sm font-bold text-gray-200 text-center">
@@ -302,9 +302,20 @@ const DashboardNavbar = () => {
                   <div className="flex justify-start gap-2">
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
 
-                      <Link  href = "/profile">
-                      <CircleUser size={24} className="text-[#CB6CE6] shrink-0 sm:w-7 sm:h-7" />
-                      </Link>
+                      <Link href = "/profile/edit">
+              {profile?.avatar ? (
+                
+                <img 
+                  src={profile?.avatar} 
+                  alt="Profile" 
+                  className="w-6 h-6 lg:w-7 lg:h-7 rounded-full object-cover border border-[#CB6CE6]"
+                />
+              ) : (
+                
+                <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
+              )}
+              
+              </Link>
 
                       {/*Wellet Address*/}
                       
