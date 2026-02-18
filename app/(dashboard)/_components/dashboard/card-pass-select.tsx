@@ -10,13 +10,15 @@ type CardPassProp = {
     data: DigiPass
 }
 
+
 const MintPass = ({ data }: CardPassProp) => {
     const { profile } = useUserStore();
     const currentPassPower = profile?.current_pass_power ?? 0;
     const currentPassId = profile?.current_pass_id;
     const isCurrent = currentPassId === data.id;
     const isLocked = profile?.has_pass && data.point_power <= currentPassPower;
-
+    console.log("currentPass:", currentPassId)
+    console.log("isLocked:", isLocked)
     const router = useRouter()
     const handleClick = () => {
         if (isLocked || isCurrent) return;

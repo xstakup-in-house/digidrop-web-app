@@ -14,7 +14,7 @@ export default function PostLogin() {
     getProfile()
       .then(profile => {
         setProfile(profile);
-        router.replace(profile.has_pass ? '/dashboard' : '/buy-pass');
+        router.replace(profile.has_pass ? '/dashboard' : '/mint-pass');
       })
       .catch(() => {
         router.replace('/login');

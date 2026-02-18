@@ -1,5 +1,5 @@
 "use client"
-import { useProfileStats            } from '@/hooks/useGetProfileStats';
+import { useProfileStats} from '@/hooks/useGetProfileStats';
 import React from 'react'
 
 
@@ -18,7 +18,7 @@ const Position = () => {
       </h2>
 
       <span className="text-lg md:text-2xl font-semibold font-chakra">
-        My Position: {data.point}/{data.highest_point}
+        My Position: {data.rank}/{data.highest_point}
       </span>
     </div>
   )

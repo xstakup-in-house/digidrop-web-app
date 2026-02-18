@@ -33,8 +33,11 @@ export const useUserStore = create<UserStore>()(
     
     }),
     {
-      name: 'user-storage', // key in localStorage
-       partialize: (s) => ({ referralLink: s.referralLink }),
+      name: 'user-storage', 
+      skipHydration: false,
+       partialize: (s) => ({
+        profile: s.profile,
+        referralLink: s.referralLink }),
     }
   )
 );

@@ -188,9 +188,9 @@ const DashboardNavbar = () => {
               <Image 
                 src="/assets/logo.png" 
                 alt="DigiDrop Logo" 
-                height={40} 
-                width={40} 
-                className="h-8 w-8 sm:h-10 sm:w-10 cursor-pointer" 
+                height={50} 
+                width={50} 
+                className="h-10 w-10 sm:h-12 sm:w-12 cursor-pointer" 
               />
             </Link>
 
@@ -204,7 +204,7 @@ const DashboardNavbar = () => {
               {profile?.avatar ? (
                 
                 <img 
-                  src={profile?.avatar} 
+                  src={profile?.avatar.image_url} 
                   alt="Profile" 
                   className="w-6 h-6 lg:w-7 lg:h-7 rounded-full object-cover border border-[#CB6CE6]"
                 />
@@ -280,7 +280,7 @@ const DashboardNavbar = () => {
                     Position
                   </p>
                   <p className="text-sm font-bold text-gray-200 text-center">
-                    {apiData.highest_point || 0}
+                    {apiData.rank || 0}
                   </p>
                 </div>
                 
@@ -318,7 +318,7 @@ const DashboardNavbar = () => {
               {profile?.avatar ? (
                 
                 <img 
-                  src={profile?.avatar} 
+                  src={profile?.avatar.image_url} 
                   alt="Profile" 
                   className="w-6 h-6 lg:w-7 lg:h-7 rounded-full object-cover border border-[#CB6CE6]"
                 />

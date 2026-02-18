@@ -24,7 +24,8 @@ const DashboardUi = () => {
   const profile = useUserStore((state) => state.profile)
   const { data: api_data, isLoading } = useProfileStats()
   
-  
+  console.log("profile stats:",api_data)
+  console.log("profile:", profile)
   const positionData = {
     icon: ArrowUpIcon,
     text: "Position",
@@ -63,7 +64,7 @@ const DashboardUi = () => {
           <InfoCard data={passData} isLoading={isLoading} />
 
           <Button
-            onClick={() => router.push("/buy-pass")}
+            onClick={() => router.push("/mint-pass")}
             className="w-full bg-[#333333] border border-gray-200 font-chakra"
           >
             UPDATE YOUR PASS
