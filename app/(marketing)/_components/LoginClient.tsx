@@ -11,14 +11,8 @@ import { toast } from 'sonner'
 
 // Web3 Imports
 import { useAccount, useDisconnect, useSignMessage,useChainId, useConnection } from 'wagmi'
-import { bsc } from 'viem/chains'
 import { bscTestnet } from '@/lib/chain'
-
-// Logic Imports
-import { useUserStore } from '@/store/useUserProfile'
 import { getNonce, walletLogin } from '@/actions/user'
-import { getProfile } from '@/app/data/profile/profile'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
 const LoginClient = () => {

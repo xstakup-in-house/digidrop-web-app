@@ -14,7 +14,19 @@ import { useProfileStats } from "@/hooks/useGetProfileStats"
 // ============================================================================
 // DATA
 // ============================================================================
-
+type NavLink =
+  | {
+      href: string
+      label: string
+      highlight?: boolean
+      onClick?: undefined
+    }
+  | {
+      href?: undefined
+      label: string
+      highlight?: boolean
+      onClick: () => void
+    }
 const FAQ_DATA = [
   {
     question: "What awaits in Digidrop?",
@@ -149,7 +161,7 @@ const DashboardNavbar = () => {
   // NAVIGATION CONFIG
   // ============================================================================
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { href: "/dashboard", label: "Dashboard" },
     { href: "/leaderboard", label: "Leaderboard" },
     { href: "/referrals", label: "Referrals" },
