@@ -44,7 +44,7 @@ const DashboardUi = () => {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#1f0e49]/30 via-[#004AAD]/50 to-[#1c1c1c]">
+    <main className="min-h-screen bg-[url('/assets/dash.jpg')] bg-cover bg-center bg-no-repeat">
       <div className="mx-auto max-w-7xl px-4 py-10">
         
 
@@ -60,7 +60,6 @@ const DashboardUi = () => {
         <section className="mx-auto mt-10 max-w-2xl space-y-4">
           <InfoCard data={positionData} isLoading={isLoading} />
           <Divider />
-          <InfoCard data={comingData} isLoading={isLoading} />
           <InfoCard data={passData} isLoading={isLoading} />
 
           <Button

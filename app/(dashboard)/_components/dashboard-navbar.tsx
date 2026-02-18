@@ -170,11 +170,11 @@ const DashboardNavbar = () => {
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0B0B0B]/95 backdrop-blur-sm">
         <div className="mx-auto flex h-16 sm:h-20 lg:h-[80px] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           
-          {/* LEFT: Logo & Profile */}
+          {/*Logo */}
           <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-            <Link href="/" className="shrink-0">
+            <Link href="/#" className="shrink-0">
               <Image 
-                src="/assets_icon/25.png" 
+                src="/assets/logo.png" 
                 alt="DigiDrop Logo" 
                 height={40} 
                 width={40} 
@@ -184,12 +184,23 @@ const DashboardNavbar = () => {
 
             <div className="hidden h-6 w-px bg-white/20 lg:block" />
 
-            {/* Wallet Address - Hidden on Mobile */}
+            {/* Wallet Address*/}
             <div className="hidden sm:flex items-center gap-2 lg:gap-3 min-w-0">
 
               {/*profile Link */}
               <Link href = "/profile/edit">
-              <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
+              {profile?.avatar ? (
+                
+                <img 
+                  src={profile?.avatar} 
+                  alt="Profile" 
+                  className="w-6 h-6 lg:w-7 lg:h-7 rounded-full object-cover border border-[#CB6CE6]"
+                />
+              ) : (
+                
+                <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
+              )}
+              
               </Link>
 
               <div className="flex items-center gap-2 min-w-0">
@@ -220,7 +231,7 @@ const DashboardNavbar = () => {
                   onClick={link.onClick}
                   className={`transition-colors whitespace-nowrap ${
                     link.highlight 
-                      ? "text-[#CB6CE6] hover:text-[#d886ee]" 
+                      ? "text-purple-400 hover:text-purple-500" 
                       : "hover:text-gray-300"
                   }`}
                 >
@@ -238,12 +249,12 @@ const DashboardNavbar = () => {
             ))}
           </nav>
 
-          {/* RIGHT: Stats & Beta (Desktop) */}
+          {/*Beta (Desktop) */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-4">
             <Button 
               variant="outline" 
               onClick={() => setIsBetaDialogOpen(true)} 
-              className="border-white/20 bg-transparent text-white hover:bg-white/10 text-sm"
+              className="border-purple-500/50 bg-purple-400 text-gray hover:bg-purple-500 text-sm"
             >
               Beta
             </Button>
@@ -253,27 +264,20 @@ const DashboardNavbar = () => {
             {!isLoading && apiData && (
               <div className="flex items-center gap-3">
                 <div className="text-right">
-                  <p className="text-[10px] uppercase text-gray-500 leading-none">
-                    High Score
+                  <p className="text-[10px] uppercase text-white leading-none">
+                    Position
                   </p>
-                  <p className="text-sm font-bold text-gray-200">
+                  <p className="text-sm font-bold text-gray-200 text-center">
                     {apiData.highest_point || 0}
                   </p>
                 </div>
                 
-                <Image 
-                  src="/assets_icon/25.png" 
-                  alt="Rank icon" 
-                  width={24} 
-                  height={24} 
-                  className="shrink-0"
-                />
                 
                 <div className="text-left">
-                  <p className="text-[10px] uppercase text-gray-500 leading-none">
-                    Points
+                  <p className="text-[10px] uppercase text-white leading-none">
+                    My Stardust
                   </p>
-                  <p className="text-sm font-bold text-[#CB6CE6]">
+                  <p className="text-sm font-bold text-white text-center">
                     {apiData.point || 0}
                   </p>
                 </div>
@@ -295,30 +299,45 @@ const DashboardNavbar = () => {
                 
                 {/* Mobile Wallet Section */}
                 <div className="border-b border-white/10 p-4 sm:p-6">
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex justify-start gap-2">
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
 
-                      <Link  href = "/profile">
-                      <CircleUser size={24} className="text-[#CB6CE6] shrink-0 sm:w-7 sm:h-7" />
-                      </Link>
+                      <Link href = "/profile/edit">
+              {profile?.avatar ? (
+                
+                <img 
+                  src={profile?.avatar} 
+                  alt="Profile" 
+                  className="w-6 h-6 lg:w-7 lg:h-7 rounded-full object-cover border border-[#CB6CE6]"
+                />
+              ) : (
+                
+                <CircleUser size={24} className="text-[#CB6CE6] shrink-0 lg:w-7 lg:h-7" />
+              )}
+              
+              </Link>
+
+                      {/*Wellet Address*/}
                       
                       <p className="text-xs sm:text-sm text-gray-200 font-mono truncate">
                         {truncateWallet(profile?.wallet_addr || "")}
                       </p>
+
+                      {/*Button */}
+                      <Button 
+                        size="icon"
+                        variant="ghost"
+                        onClick={handleCopy}
+                        className="h-8 w-8 text-gray-400 shrink-0"
+                        aria-label="Copy wallet address">
+                          {isCopied ? (
+                            <Check size={16} className="text-green-400" />
+                          ) : (
+                            <Copy size={16} />
+                          )}
+                        </Button>
                     </div>
-                    <Button 
-                      size="icon" 
-                      variant="ghost" 
-                      onClick={handleCopy} 
-                      className="h-8 w-8 text-gray-400 shrink-0"
-                      aria-label="Copy wallet address"
-                    >
-                      {isCopied ? (
-                        <Check size={16} className="text-green-400" />
-                      ) : (
-                        <Copy size={16} />
-                      )}
-                    </Button>
+                    
                   </div>
                 </div>
 
@@ -331,7 +350,7 @@ const DashboardNavbar = () => {
                         onClick={() => handleNavClick(link.onClick)} 
                         className={`text-left transition-colors ${
                           link.highlight 
-                            ? "text-[#CB6CE6]" 
+                            ? "text-purple-400" 
                             : "text-gray-300 hover:text-white"
                         }`}
                       >
@@ -356,17 +375,17 @@ const DashboardNavbar = () => {
                     <div className="flex justify-between items-center bg-white/5 p-3 sm:p-4 rounded-lg">
                       <div>
                         <p className="text-[10px] text-gray-500 uppercase leading-none mb-1">
-                          Current Points
+                          Position
                         </p>
-                        <p className="text-lg sm:text-xl font-bold text-[#CB6CE6]">
+                        <p className="text-lg sm:text-xl font-bold text-purple-400">
                           {apiData.point || 0}
                         </p>
                       </div>
                       <div className="text-right">
                         <p className="text-[10px] text-gray-500 uppercase leading-none mb-1">
-                          High Score
+                         My Stardust 
                         </p>
-                        <p className="text-sm sm:text-base font-bold text-white">
+                        <p className="text-sm sm:text-base font-bold text-white text-">
                           {apiData.highest_point || 0}
                         </p>
                       </div>
@@ -374,10 +393,10 @@ const DashboardNavbar = () => {
                   )}
                   
                   <Button 
-                    className="w-full bg-[#CB6CE6] text-black hover:bg-[#b54cd4] font-medium h-11 sm:h-12"
+                    className="w-full bg-purple-400 text-black hover:bg-purple-500 font-medium h-11 sm:h-12"
                     onClick={() => handleNavClick(() => setIsBetaDialogOpen(true))}
                   >
-                    Beta Access
+                    Beta
                   </Button>
                 </div>
               </div>
@@ -408,22 +427,25 @@ const DashboardNavbar = () => {
               <div className="absolute -top-24 -left-24 h-48 w-48 rounded-full bg-purple-600/20 blur-[80px]" />
               
               <div className="relative text-center space-y-4 sm:space-y-6">
-                <h2 className="text-2xl sm:text-3xl font-bold uppercase text-white">
+                <h2 className="text-2xl text-center font-bold uppercase text-white">
                   Beta Horizon
                 </h2>
                 <p className="text-sm sm:text-base text-purple-400">
                   Pioneer the Unknown
                 </p>
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                <p className=" mb-8 text-sm text-gray-300 leading-relaxed">
                   You are among the first to gaze upon this evolving galaxy. As beta voyagers
                   your discoveries refine the stars. Launch Bonus: Mint your Passport today to lock in your Stardust Multiplier before the galaxy expands.
                 </p>
+
+                <div className="flex justify-center">
                 <Button 
                   onClick={() => closeModal(setIsBetaDialogOpen)} 
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white py-5 sm:py-6 text-sm sm:text-base"
+                  className="w-full bg-purple-600 hover:bg-purple-500 text-white"
                 >
                   Close Transmission
                 </Button>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -457,10 +479,10 @@ const DashboardNavbar = () => {
               </div>
               
               {/* Footer */}
-              <div className="border-t border-white/10 p-3 sm:p-4 text-right">
+              <div className="border-t border-white/10 px-6 py-4 text-right">
                 <Button 
                   onClick={() => closeModal(setIsHowToPlayDialogOpen)} 
-                  className="bg-purple-600 hover:bg-purple-500 text-sm sm:text-base"
+                  className="bg-purple-600 hover:bg-purple-500 text-right"
                 >
                   Close
                 </Button>
@@ -509,7 +531,7 @@ const DashboardNavbar = () => {
               <div className="border-t border-white/10 p-3 sm:p-4 bg-[#121212]">
                 <p className="text-center text-xs text-gray-500">
                   Need more help? Join our{" "}
-                  <span className="text-purple-400 cursor-pointer underline hover:text-purple-300 transition-colors">
+                  <span className="text-purple-400 cursor-pointer underline hover:text-purple-500 transition-colors">
                     Discord channel
                   </span>
                   .
