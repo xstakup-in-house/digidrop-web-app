@@ -39,15 +39,15 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-8">
             <Link
               href="/"
-              className="flex items-center transition-opacity hover:opacity-80"
-              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center"
+              
             >
               <Image
                 src="/assets/logo.png"
                 alt="Digi Drop Logo"
-                width={100}
+                width={3000}
                 height={100}
-                className="h-[50px] w-[50px] object-contain md:h-[60px] md:w-[60px]"
+                className="h-12 sm:h-14 md:h-16 w-auto object-contain"
                 priority
               />
             </Link>
