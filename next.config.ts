@@ -1,39 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+
   images: {
+    // Option 1: Simple (allows all Cloudinary subdomains)
     remotePatterns: [
       {
         protocol: 'https',
         port: '',
         hostname: 'res.cloudinary.com',
-        // Specific to your Cloudinary cloud name
-        pathname: '/ddozftpka/**', 
+        pathname: '/ddozftpka/**',
+        // pathname: '**', // optional, allows any path
       },
     ],
   },
-
-  // 1. Add Headers to fix COOP 404/Security errors
-  async headers() {
-    return [
-      {
-        source: '/(.*)', // Apply to all routes
-        headers: [
-          {
-            key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin', // Prevents cross-origin popups from accessing your window
-          },
-          {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'require-corp', // Complements COOP for total isolation
-          },
-        ],
-      },
-    ];
-  },
-
-  /* Webpack configuration remains the same */
-  webpack: (config) => {
+  /* config options here */
+   webpack: (config) => {
     return config; 
   },
 };
