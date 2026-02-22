@@ -188,9 +188,9 @@ const DashboardNavbar = () => {
               <Image 
                 src="/assets/logo.png" 
                 alt="DigiDrop Logo" 
-                height={50} 
-                width={50} 
-                className="h-10 w-10 sm:h-12 sm:w-12 cursor-pointer" 
+                height={300} 
+                width={100} 
+                className="h-12 w-auto md:h-16 sm:h-14  object-contain" 
               />
             </Link>
 
