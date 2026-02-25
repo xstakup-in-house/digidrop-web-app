@@ -16,6 +16,13 @@ export interface UserProfile {
   has_pass: boolean; 
 }
 
+export interface UserStat{
+   point: number,
+   rank: number
+   highest_score: number
+   total_user: number
+}
+
 export interface PassInfo {
   passId: bigint;
   pass_type: string;

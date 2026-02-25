@@ -390,7 +390,7 @@ const DashboardNavbar = () => {
                           Position
                         </p>
                         <p className="text-lg sm:text-xl font-bold text-purple-400">
-                          {apiData.point || 0}
+                          {apiData.rank || 0}
                         </p>
                       </div>
                       <div className="text-right">
@@ -398,7 +398,7 @@ const DashboardNavbar = () => {
                          My Stardust 
                         </p>
                         <p className="text-sm sm:text-base font-bold text-white text-">
-                          {apiData.highest_point || 0}
+                          {apiData.point || 0}
                         </p>
                       </div>
                     </div>
