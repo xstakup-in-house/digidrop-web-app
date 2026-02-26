@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/useUserProfile";
-import { motion } from "framer-motion"; 
+import { motion, Variants } from "framer-motion";
 
 const SHARE_TEXT = "Join me on Digi Drop and earn Stardust!";
 const STARDUST_REWARD = 200;
@@ -25,7 +25,7 @@ const SOCIAL_PLATFORMS = [
 ] as const;
 
 // --- Animation Variants ---
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -33,22 +33,23 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+
+const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
-  visible: { 
-    y: 0, 
+  visible: {
+    y: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 50 } 
+    transition: { type: "spring", stiffness: 50 },
   },
 };
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { scale: 0.9, opacity: 0, x: 50 },
-  visible: { 
-    scale: 1, 
-    opacity: 1, 
+  visible: {
+    scale: 1,
+    opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: "easeOut" },
   },
 };
 
