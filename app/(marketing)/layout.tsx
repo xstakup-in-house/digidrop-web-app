@@ -13,8 +13,8 @@ const chakra = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "DigiDrops - web3",
-  description: "A brief description of your website for SEO",
+  title: "DigiDrops | Web3 Growth and Marketing",
+  description: "Expert Web3 Growth & Marketing by Digidrops. Join via utility SBTs for community access & identity. Scale your project – digidrops.xyz",
   icons: {
     icon: "assets/favicon.png", 
   },

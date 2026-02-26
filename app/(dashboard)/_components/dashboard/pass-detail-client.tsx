@@ -66,10 +66,7 @@ export default function PassDetailClient({ pass }: Prop) {
         
         {/* --- HEADER SECTION --- */}
         <div className="text-center mb-16 space-y-4">
-          {/* Badge */}
-          <div className={`inline-block px-4 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-bold tracking-[0.2em] uppercase mb-2 ${theme.textColor}`}>
-            {pass.pass_type} Tier
-          </div>
+        
           
           {/* Main Title */}
           <h1 className='text-5xl md:text-7xl font-bold font-chakra uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/50 drop-shadow-lg'>
@@ -136,28 +133,8 @@ export default function PassDetailClient({ pass }: Prop) {
             </div>
           </div>
 
-          {/* 3. RIGHT PANEL: Perks & Utilities */}
-          <div className='lg:col-span-3 order-3 lg:order-3 h-full'>
-             <div className={`${glassPanelClass} items-start text-left px-8`}>
-                <h3 className="text-gray-400 text-xs font-bold tracking-[0.2em] uppercase mb-8 w-full text-center border-b border-white/10 pb-4">
-                  {theme.perksTitle}
-                </h3>
-                
-                {/* Perks List */}
-                <ul className='space-y-6 w-full'>
-                  {theme.perks.map((perk, index) => (
-                    <li key={index} className='flex items-center gap-4 group/item'>
-                      <div className={`p-2 rounded-lg bg-white/5 group-hover/item:bg-white/10 transition-colors ${theme.textColor}`}>
-                        {perk.icon}
-                      </div>
-                      <span className="text-sm font-medium text-gray-200 group-hover/item:text-white transition-colors">
-                        {perk.label}
-                      </span>
-                    </li> 
-                  ))}
-                </ul>
-             </div>
-          </div>
+        
+          
 
         </div>
         

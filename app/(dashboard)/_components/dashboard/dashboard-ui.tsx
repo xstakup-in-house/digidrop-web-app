@@ -33,7 +33,7 @@ const DashboardUi = () => {
   }
  
   const passData = {
-    icon: "/assets/star.png",
+    icon: "/assets/iconLogo.png",
     midText: "POWER ON YOUR SB PASS",
     value: `${profile?.current_pass_power}x`,
   }
@@ -45,7 +45,7 @@ const DashboardUi = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[url('/assets/dash.jpg')] bg-cover bg-center bg-no-repeat">
+    <main className="min-h-screen bg-[url('/assets/bg.png')] bg-cover bg-center bg-no-repeat">
       <div className="mx-auto max-w-7xl px-4 py-10">
         
 

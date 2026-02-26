@@ -30,7 +30,7 @@ const Footer = () => {
               text-center md:text-left
             "
           >
-            <p>COPYRIGHT © {new Date().getFullYear()} DIGIDROP</p>
+            <p>COPYRIGHT © {new Date().getFullYear() } DIGIDROP</p>
 
             <Link href="/term-and-condition" className="hover:text-white transition">
               TERMS AND CONDITIONS
@@ -57,23 +57,23 @@ const Footer = () => {
 
           {/* Social icons */}
           <div className="flex justify-center gap-6">
-            <Link href="https://twitter.com/yourhandle" target="_blank">
+            <Link href="https://twitter.com/Digidrops_xyz" target="_blank">
               <FaTwitter className="text-xl hover:text-blue-400 transition" />
             </Link>
 
-            <Link href="https://facebook.com/yourhandle" target="_blank">
+            <Link href="https://facebook.com/Digidrops_xyz" target="_blank">
               <FaFacebook className="text-xl hover:text-blue-600 transition" />
             </Link>
 
-            <Link href="https://instagram.com/yourhandle" target="_blank">
+            <Link href="https://instagram.com/Digidrops_xyz" target="_blank">
               <FaInstagram className="text-xl hover:text-pink-500 transition" />
             </Link>
 
-            <Link href="https://discord.com/invite/yourhandle" target="_blank">
+            <Link href="https://discord.com/invite/Digidrops_xyz" target="_blank">
               <FaDiscord className="text-xl hover:text-indigo-500 transition" />
             </Link>
 
-            <Link href="https://t.me/yourhandle" target="_blank">
+            <Link href="https://t.me/Digidrops_xyz" target="_blank">
               <FaTelegram className="text-xl hover:text-sky-500 transition" />
             </Link>
           </div>

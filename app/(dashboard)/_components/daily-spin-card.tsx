@@ -34,7 +34,7 @@ const DailySpinCard = ({ targetDate }: Prop) => {
   return (
     <div className="flex w-full flex-col sm:flex-row items-center sm:items-center justify-between gap-4 rounded-md bg-[#333333] px-5 py-4">
       <div className="w-full flex items-center gap-3">
-        <img src="/assets/star.png" alt="" className="h-8 w-8" />
+        <img src="/assets/iconLogo.png" alt="logo" className="h-8 w-8" />
         <div className="w-full text-center sm:text-left">
           <p className="font-chakra text-gray-300">
             DAILY SPIN <span className="ml-2 text-xs">(Coming Soon)</span>

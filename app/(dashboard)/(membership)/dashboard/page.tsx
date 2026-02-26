@@ -6,7 +6,6 @@ import { getProfile, getProfileStats } from '@/app/data/profile/profile';
 
 const Dashboard = async () => {
   const profile = await getProfile();
-  
   return (
     <DashboardClient profile={profile} />
   )

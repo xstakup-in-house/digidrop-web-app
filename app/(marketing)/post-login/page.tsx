@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getProfile } from '@/app/data/profile/profile';
 import { useUserStore } from '@/store/useUserProfile';
+import Loading from '@/components/common/LoadingContent';
 
 export default function PostLogin() {
   const router = useRouter();
@@ -23,7 +24,8 @@ export default function PostLogin() {
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen w-full'>
-        <p className="text-center text-lg text-white mt-20">Preparing your account...</p>
+        <Loading />
+        <p className="text-center text-lg font-bold text-white mt-10">Preparing your account...</p>
     </div>
   );
 }

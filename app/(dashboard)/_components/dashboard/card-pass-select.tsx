@@ -22,7 +22,7 @@ const MintPass = ({ data }: CardPassProp) => {
     const router = useRouter()
     const handleClick = () => {
         if (isLocked || isCurrent) return;
-        router.push(`/buy-pass/${data.id}`);
+        router.push(`/mint-pass/${data.id}`);
     };
 
     return (
