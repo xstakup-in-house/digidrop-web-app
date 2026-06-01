@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Check, Star, Zap, Shield, Trophy, Rocket, Crown } from "lucide-react";
 import PassActionButton from "../PassActionButton"; // Ensure this path is correct
@@ -52,12 +52,29 @@ const getPassTheme = (pass: DigiPass) => {
 
 export default function PassDetailClient({ pass }: Prop) {
   const theme = getPassTheme(pass);
+  const [rotate, setRotate] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    
+    setRotate({
+      x: -(y / (box.height / 2)) * 12,
+      y: (x / (box.width / 2)) * 12
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 0, y: 0 });
+  };
 
   // Reusable CSS class for the side glass panels
   const glassPanelClass = `relative flex flex-col items-center justify-center w-full h-full min-h-[300px] bg-white/5 border border-white/10 backdrop-blur-md rounded-3xl p-6 shadow-2xl overflow-hidden group ${theme.borderColor} transition-all duration-300`;
 
   return (
-    <div className='w-full min-h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1a2c55] via-[#0b1026] to-[#000000] text-white selection:bg-brandColor/30'>
+    <div className='w-full min-h-screen bg-[url("/assets/galaxy.jpg")] bg-cover bg-fixed bg-center text-white selection:bg-brandColor/30 relative'>
       
       {/* Background Noise Texture for cinematic feel */}
       <div className="fixed inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
@@ -115,7 +132,15 @@ export default function PassDetailClient({ pass }: Prop) {
             <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] ${theme.bgGlow} rounded-full blur-[80px] pointer-events-none`}></div>
             
             {/* 3D Floating Image Effect */}
-            <div className="relative z-10 transform transition-all duration-500 hover:scale-105 hover:rotate-1 perspective-1000">
+            <div 
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+                transition: rotate.x === 0 ? "all 0.5s ease" : "none"
+              }}
+              className="relative z-10 cursor-pointer"
+            >
               <Image 
                 src={pass.card} 
                 alt={pass.name} 

@@ -101,23 +101,25 @@ const ReferralSection = () => {
           >
             
             {/* --- 1. HEADER SECTION --- */}
-            {/* Added 'mb-16' to force space below the header block */}
-            <motion.header variants={itemVariants} className="mb-16 text-center lg:text-left">
-              <h1 className="max-w-3xl bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text bg-[200%_auto] py-2 text-4xl font-extrabold leading-tight text-transparent animate-gradient sm:text-5xl md:text-6xl">
-                REFER & GET STARDUST
+            <motion.header variants={itemVariants} className="mb-12 text-center lg:text-left">
+              <h1 className="max-w-3xl bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text py-2 text-4xl font-extrabold leading-tight text-transparent animate-gradient sm:text-5xl md:text-6xl drop-shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                SIGNAL PROPAGATION BEACON
               </h1>
-              {/* Added 'mt-8' and 'leading-loose' for line spacing within the text */}
-              <p className="mx-auto mt-8 max-w-lg font-chakra text-lg leading-loose text-gray-200 lg:mx-0">
-                Share your referral link with friends & get <span className="font-bold text-yellow-400">{STARDUST_REWARD} Stardust</span> for every recruit.
+              <p className="mx-auto mt-6 max-w-lg font-chakra text-md leading-relaxed text-gray-300 lg:mx-0">
+                Establish your celestial link. Broadcast your unique transmission frequency to guide recruits through the void & accumulate <span className="font-bold text-yellow-400">{STARDUST_REWARD} Stardust units</span> for every pilot that docks.
               </p>
             </motion.header>
 
             {/* --- 2. LINK BOX --- */}
-            {/* Added 'mb-20' to force HUGE space below the link box */}
-            <motion.div variants={itemVariants} className="mb-20 w-full max-w-xl">
-              <div className="flex w-full items-stretch overflow-hidden rounded-xl border-2 border-white/10 bg-black/40 backdrop-blur-lg transition-colors hover:border-white/30">
+            <motion.div variants={itemVariants} className="mb-16 w-full max-w-xl">
+              <div className={cn(
+                "flex w-full items-stretch overflow-hidden rounded-xl border backdrop-blur-md transition-all duration-500",
+                copied 
+                  ? "border-green-500 bg-green-950/25 shadow-[0_0_35px_rgba(34,197,94,0.35)]" 
+                  : "border-purple-500/25 bg-black/60 hover:border-purple-400/40 shadow-[0_0_20px_rgba(168,85,247,0.05)]"
+              )}>
                 <div className="flex min-w-0 flex-1 items-center px-4 py-4 md:px-6">
-                  <span className="truncate font-chakra text-sm text-gray-300 md:text-base">
+                  <span className="truncate font-chakra text-sm font-mono text-blue-400 md:text-base">
                     {refLink}
                   </span>
                 </div>
@@ -125,14 +127,14 @@ const ReferralSection = () => {
                 <Button
                   onClick={handleCopy}
                   className={cn(
-                    "h-auto rounded-none px-6 py-4 font-chakra text-base font-bold transition-all md:px-8",
+                    "h-auto rounded-none px-6 py-4 font-chakra text-base font-bold transition-all duration-300 md:px-8",
                     copied 
-                      ? "bg-green-600 hover:bg-green-700 text-white" 
-                      : "bg-[#A176D6] hover:bg-[#8e61c7] text-white"
+                      ? "bg-green-600 hover:bg-green-700 text-white shadow-[inset_0_0_15px_rgba(255,255,255,0.2)]" 
+                      : "bg-purple-600 hover:bg-purple-700 text-white"
                   )}
                 >
-                  {copied ? <FaCheck className="mr-2" /> : <FaLink className="mr-2" />}
-                  {copied ? "Copied" : "Copy"}
+                  {copied ? <FaCheck className="mr-2 animate-bounce" /> : <FaLink className="mr-2" />}
+                  {copied ? "Copied!" : "Copy"}
                 </Button>
               </div>
             </motion.div>
@@ -140,22 +142,34 @@ const ReferralSection = () => {
             {/* --- 3. SOCIAL SECTION --- */}
             <motion.div variants={itemVariants} className="flex w-full flex-col items-center lg:items-start">
               
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">
-                Share link through
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-purple-400 font-mono">
+                BROADCAST SECTOR SIGNAL THROUGH
               </span>
               
-              {/* Added 'mt-8' and 'mb-16' to isolate the buttons */}
-              <div className="mb-16 mt-8 flex flex-wrap justify-center gap-6 lg:justify-start">
-                {SOCIAL_PLATFORMS.map(({ id, name, icon: Icon, color }) => (
+              <div className="mb-12 mt-6 flex flex-wrap justify-center gap-6 lg:justify-start">
+                {SOCIAL_PLATFORMS.map(({ id, name, icon: Icon, color }, idx) => (
                   <motion.div
                     key={id}
-                    whileHover={{ scale: 1.05, y: -5 }}
+                    animate={{
+                      y: [0, -6, 0]
+                    }}
+                    transition={{
+                      duration: 3 + (idx * 0.4),
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: idx * 0.15
+                    }}
+                    whileHover={{ 
+                      scale: 1.1,
+                      boxShadow: `0 0 30px ${color}55`
+                    }}
                     whileTap={{ scale: 0.95 }}
+                    className="rounded-2xl"
                   >
                     <Button
                       size="icon"
                       onClick={() => handleShare(id)}
-                      className="group relative h-16 w-16 overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-colors duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl md:h-20 md:w-20"
+                      className="group relative h-16 w-16 overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/10 md:h-20 md:w-20"
                       aria-label={`Share on ${name}`}
                     >
                       <div 

@@ -10,13 +10,13 @@ import { ConnectWalletButton } from '@/components/common/WalletConnectButton'
 import { toast } from 'sonner'
 
 // Web3 Imports
-import { useAccount, useDisconnect, useSignMessage,useChainId, useConnection } from 'wagmi'
+import { useAccount, useDisconnect, useSignMessage,useChainId } from 'wagmi'
 import { bscTestnet } from '@/lib/chain'
 import { getNonce, walletLogin } from '@/actions/user'
 import { Button } from '@/components/ui/button'
 
 const LoginClient = () => {
-  const { address, isConnected} = useConnection()
+  const { address, isConnected } = useAccount()
   const chainId = useChainId();
   const disconnect = useDisconnect()
   const nonceRef = useRef<string | null>(null);
@@ -26,6 +26,17 @@ const LoginClient = () => {
   const [loading, setLoading] = useState(false);
   const allowedChainIds =  [bscTestnet.id];
   const targetChainId = allowedChainIds[0];
+
+  // Generate 25 twinkling stars in random coordinates
+  const stars = React.useMemo(() => {
+    return Array.from({ length: 25 }).map((_, idx) => ({
+      id: idx,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: `${Math.random() * 2 + 1}px`,
+      delay: `${Math.random() * 4}s`,
+    }));
+  }, []);
 
   const signMessage = useSignMessage({
   mutation: {
@@ -100,47 +111,71 @@ const handleAuthentication = async () => {
   
 
   return (
-    
-    <div className='relative h-screen w-full font-chakra bg-[url("/assets/Stanton-crusader.jpg")] bg-cover bg-center bg-no-repeat'>
-      <div className="absolute inset-0 bg-black/20" />
+    <div className='relative h-screen w-full font-chakra bg-[url("/assets/Stanton-crusader.jpg")] bg-cover bg-center bg-no-repeat overflow-hidden'>
+      {/* Dynamic star deck halo */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative flex h-full items-center justify-center p-4">
-        <Card className='w-full max-w-2xl border-gray-700 bg-gray-900/80 text-gray-200 backdrop-blur-sm'>
+      {/* Twinkling Star Particles Backdrop */}
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="star-particle bg-white"
+            style={{
+              top: star.top,
+              left: star.left,
+              width: star.size,
+              height: star.size,
+              animationDelay: star.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative flex h-full items-center justify-center p-4 z-10">
+        <Card className='w-full max-w-xl border-purple-500/25 bg-gray-950/80 text-gray-200 backdrop-blur-xl shadow-[0_0_50px_rgba(168,85,247,0.15)] rounded-2xl'>
           
-          <CardHeader>
-            <CardTitle className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text py-2 text-center text-3xl font-bold uppercase tracking-wider text-transparent">
-              Welcome to DigiVerse
+          <CardHeader className="border-b border-white/5 py-6">
+            <CardTitle className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-center text-2xl font-extrabold uppercase tracking-widest text-transparent animate-gradient">
+              REACTOR DECRYPTION TERMINAL
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="flex flex-col items-center justify-center pb-8 pt-4">
+          <CardContent className="flex flex-col items-center justify-center pb-8 pt-8 px-6 sm:px-10">
             {/* ConnectWalletButton component */}
-            <ConnectWalletButton />
+            <div className="w-full flex justify-center mb-6">
+              <ConnectWalletButton />
+            </div>
+
             {isConnected && address && (
-              <>
-               <Button
+              <div className="w-full flex flex-col items-center gap-4">
+                <Button
                   onClick={handleAuthentication}
                   disabled={loading}
-                  className="px-10 py-3 mt-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl"
-                  >
-                    {!isCorrectChain ? 'Wrong network' : 'Continue'}
-                  </Button>
-                  {!isCorrectChain && (
-                    <p className="mt-2 text-orange-400 text-xs">
-                      On {chainId ? `Chain ${chainId}` : 'Unknown'} (Need {targetChainId})
-                    </p>
-                  )}
-              </>
+                  className="w-full py-4 text-md uppercase font-bold tracking-widest bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-xl shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  {!isCorrectChain ? 'SWITCH TO BSC TESTNET' : 'AUTHORIZE DECRYPTION BEACON'}
+                </Button>
+                
+                {!isCorrectChain && (
+                  <p className="text-orange-400 text-xs font-mono text-center">
+                    SYSTEM WARN // WRONG COMMS FREQUENCY (Need Chain {targetChainId})
+                  </p>
+                )}
+              </div>
             )}
             
-            <p className="mt-4 font-chakra text-center  text-sm tracking-wide text-gray-400">
-              Connect your wallet for secure login
+            <p className="mt-6 font-chakra text-center text-xs tracking-widest uppercase text-gray-500">
+              ESTABLISH CRYPTOGRAPHIC LINK TO BEGIN JOURNEY
             </p>
 
             {loading && (
-               <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-blue-400 animate-pulse">
-                 Logging in...
-               </p>
+              <div className="mt-8 w-full bg-black/60 rounded-xl p-4 border border-blue-500/20 font-mono text-[10px] space-y-2 text-blue-400 leading-normal animate-pulse">
+                <p>{`>>> [COMMS] LINK ACQUIRED AT ${address ? address.slice(0,10) : ''}...`}</p>
+                <p>{`>>> [DECRYPTING] REQUESTING NONCE TO VERIFY SIGNATURE...`}</p>
+                <p>{`>>> [WAITING] PILOT SIGNATURE RESPONSE PENDING IN WALLET TERMINAL...`}</p>
+              </div>
             )}
           </CardContent>
         </Card>

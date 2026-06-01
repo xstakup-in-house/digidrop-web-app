@@ -81,7 +81,7 @@ const DashboardUi = () => {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-between pt-6">
             <p className="text-sm text-gray-300 max-w-md">
-              Continuously engage with @DIGIDROP official tweets to earn a higher
+              Continuously engage with @Digidrops_xyz official tweets to earn a higher
               share of Points
             </p>
             <Button size="lg" variant="outline">

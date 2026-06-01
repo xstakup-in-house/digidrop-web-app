@@ -4,7 +4,7 @@ import { bscTestnet } from './chain';
 
 
 export const wagmiConfig = getDefaultConfig({
-  appName: 'Digidrop',
+  appName: 'Digidrops',
   projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID!,
   chains:  [bscTestnet],
   ssr: false,

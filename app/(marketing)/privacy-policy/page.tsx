@@ -23,7 +23,7 @@ const SECTIONS: PolicySection[] = [
     title: '2. Data Collection',
     content: [
       'We navigate primarily by public wallet address nothing more.',
-      'Digi Drop does not collect personal names, physical addresses, or financial identifiers unless you voluntarily transmit them for clearly defined optional activities.',
+      'Digidrops does not collect personal names, physical addresses, or financial identifiers unless you voluntarily transmit them for clearly defined optional activities.',
     ],
   },
   {
@@ -31,7 +31,7 @@ const SECTIONS: PolicySection[] = [
     title: '3. Usage',
     content: [
       'Your wallet address is used only to:',
-      '• Verify ownership of a Digi Drop Pass before dashboard access',
+      '• Verify ownership of a Digidrops Pass before dashboard access',
       '• Track Stardust as non-monetary participation markers',
       '• Confirm Pass Rank (Void / Starlight / Solar)',
       '• Record quest progression across the constellation',
@@ -42,7 +42,7 @@ const SECTIONS: PolicySection[] = [
     title: '4. Protection',
     content: [
       'Your path is shielded by blockchain transparency and internal access protocols.',
-      'DigiDrop does not sell, rent, or trade user data—ever.',
+      'Digidrops does not sell, rent, or trade user data—ever.',
     ],
   },
   {
@@ -50,7 +50,7 @@ const SECTIONS: PolicySection[] = [
     title: '5. Your Command',
     content: [
       'You may disconnect at any time and drift freely.',
-      'For questions, course corrections, or concerns, contact Mission Control through official DigiDrop channels.',
+      'For questions, course corrections, or concerns, contact Mission Control through official Digidrops channels.',
     ],
   },
 ];

@@ -14,16 +14,16 @@ const SECTIONS: TermSection[] = [
     id: 'agreements',
     title: '1. Agreements',
     content: [
-      'By minting a DigiDrop pass, connecting a wallet, or entering the DigiDrop dashboard, you accept this Voyager`s Accord.',
-      'A DigiDrop pass minted as a soulbound access credential is required before dashboard access is granted. If these terms do not align with your path, do not proceed beyond the mint gate.',
-      'DigiDrop is a socialFi platform, not a financial system, investment vehicle, or marketplace.',
+      'By minting a Digidrops pass, connecting a wallet, or entering the Digidrops dashboard, you accept this Voyager`s Accord.',
+      'A Digidrops pass minted as a soulbound access credential is required before dashboard access is granted. If these terms do not align with your path, do not proceed beyond the mint gate.',
+      'Digidrops is a socialFi platform, not a financial system, investment vehicle, or marketplace.',
     ],
   },
   {
     id: 'rights-laws',
     title: '2. Rights & Laws',
     content: [
-      'You confirm that your journey through Digi Drop is lawful within your jurisdiction.',
+      'You confirm that your journey through Digidrops is lawful within your jurisdiction.',
       'Nothing within this universe—Passes, Stardust, quests, multipliers, or rankings—represents:',
       '• An investment',
       '• A security',
@@ -36,7 +36,7 @@ const SECTIONS: TermSection[] = [
     id: 'third-party',
     title: '3. Third-Party Applications',
     content: [
-      'Digi Drop travels alongside third-party systems such as blockchain networks (including BNB Smart Chain), wallet providers, and infrastructure services.',
+      'Digidrops travels alongside third-party systems such as blockchain networks (including BNB Smart Chain), wallet providers, and infrastructure services.',
       'We do not command these systems and accept no responsibility for:',
       '• Wallet security or private key management',
       '• Network delays, congestion, or outages',
@@ -48,7 +48,7 @@ const SECTIONS: TermSection[] = [
     id: 'rights-grant',
     title: '4. Rights You Grant to Us',
     content: [
-      'By entering the constellation, you grant Digi Drop a limited, non-exclusive right to:',
+      'By entering the constellation, you grant Digidrops a limited, non-exclusive right to:',
       '• Verify Pass ownership to enable access',
       '• Record quest activity for continuity and fairness',
       '• Display anonymized participation metrics within community features',

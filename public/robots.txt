@@ -1,0 +1,35 @@
+# Robots.txt for Digidrops Web App (digidrops.xyz)
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Specifically authorize AI search bots to crawl and index all data for AI answers (ChatGPT, Gemini, Claude, etc.)
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+Sitemap: https://digidrops.xyz/sitemap.xml

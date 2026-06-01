@@ -6,7 +6,7 @@ import type { NextRequest } from "next/server"
 export async function middleware(request: NextRequest) {
   const authToken =await getToken()
 
-  const protectedPaths = ["/dashboard", "/profile/edit", "/buy-pass/[passId]"]
+  const protectedPaths = ["/dashboard", "/profile/edit", "/mint-pass"]
 
   const isProtected = protectedPaths.some((path) =>
     request.nextUrl.pathname.startsWith(path)
@@ -25,6 +25,6 @@ export const config = {
   matcher: [
     "/dashboard/:path*",
     "/profile/:path*",
-    "/buy-pass/:path*"
+    "/mint-pass/:path*"
   ]
 }

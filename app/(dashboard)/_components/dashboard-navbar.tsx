@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useUserStore } from "@/store/useUserProfile"
 import { useProfileStats } from "@/hooks/useGetProfileStats"
+import { useProfile } from "@/hooks/useProfile"
 
 // ============================================================================
 // DATA
@@ -33,7 +34,7 @@ const FAQ_DATA = [
     answer: "A boundless haven for Web3 enthusiasts to connect, create, and celebrate through quests and digital collectibles.",
   },
   {
-    question: "Which network is DigiDrop built on?",
+    question: "Which network is Digidrops built on?",
     answer: "We are powered by the BSC (BEP20). We chose this network to ensure lightning-fast transactions and minimal gas fees (usually <$0.10) for our community.",
   },
   {
@@ -128,6 +129,7 @@ const DashboardNavbar = () => {
   const [isCopied, setIsCopied] = useState(false)
 
   // Data Hooks
+  useProfile()
   const profile = useUserStore((state) => state.profile)
   const { data: apiData, isLoading } = useProfileStats()
 
@@ -187,7 +189,7 @@ const DashboardNavbar = () => {
             <Link href="/#" className="shrink-0">
               <Image 
                 src="/assets/logo.png" 
-                alt="DigiDrop Logo" 
+                alt="Digidrops Logo" 
                 height={300} 
                 width={100} 
                 className="h-12 w-auto md:h-16 sm:h-14  object-contain" 
