@@ -3,8 +3,29 @@ import { getToken } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
+function isTelegramRequest(request: NextRequest): boolean {
+  const ua = request.headers.get("user-agent")?.toLowerCase() ?? ""
+  return ua.includes("telegram") || ua.includes("tgweb")
+}
+
+function addSecurityHeaders(response: NextResponse, request: NextRequest): void {
+  const isTelegram = isTelegramRequest(request)
+
+  if (isTelegram) {
+    response.headers.set(
+      "Content-Security-Policy",
+      "frame-ancestors 'self' https://t.me https://telegram.org;"
+    )
+  } else {
+    response.headers.set("X-Frame-Options", "DENY")
+  }
+}
+
 export async function middleware(request: NextRequest) {
   const authToken =await getToken()
+
+  const response = NextResponse.next()
+  addSecurityHeaders(response, request)
 
   const protectedPaths = ["/dashboard", "/profile/edit", "/mint-pass"]
 
@@ -14,20 +35,20 @@ export async function middleware(request: NextRequest) {
 
   if (isProtected && !authToken) {
     if (process.env.NODE_ENV === 'development') {
-      return NextResponse.next()
+      return response
     }
     const loginUrl = new URL("/login", request.url)
     loginUrl.searchParams.set("redirect", request.nextUrl.pathname)
-    return NextResponse.redirect(loginUrl)
+    const redirectResponse = NextResponse.redirect(loginUrl)
+    addSecurityHeaders(redirectResponse, request)
+    return redirectResponse
   }
 
-  return NextResponse.next()
+  return response
 }
 
 export const config = {
   matcher: [
-    "/dashboard/:path*",
-    "/profile/:path*",
-    "/mint-pass/:path*"
+    "/((?!_next|static|favicon.ico|assets).*)",
   ]
 }

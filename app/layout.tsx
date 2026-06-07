@@ -1,9 +1,10 @@
 import React from "react"
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {  Chakra_Petch } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import ClientProviders from "@/providers/ClientProviders";
+import { TelegramScript } from "@/components/common/TelegramScript";
 
 
 
@@ -16,6 +17,13 @@ const chakra = Chakra_Petch({
 });
 
 
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#1C1C1C",
+};
 
 export const metadata: Metadata = {
   title: "Digidrops | The Sybil-Resistant Human Layer of BNB Chain",
@@ -106,6 +114,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <TelegramScript />
       </head>
       <body
         className={`${chakra.variable} antialiased bg-[#1C1C1C] font-chakra`}

@@ -10,14 +10,7 @@ export default function MembershipLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isMainDashboard = pathname === "/dashboard" || pathname === "/dashboard/";
-  const isLeaderboard = pathname.startsWith("/leaderboard");
-  const isReferrals = pathname.startsWith("/referrals");
-  const isPrivacy = pathname.includes("privacy-policy");
-  const isTerms = pathname.includes("term-and-condition");
-  const isManifesto = pathname.includes("manifesto");
-  const showNavbar = !isMainDashboard && !isLeaderboard && !isReferrals && !isPrivacy && !isTerms && !isManifesto;
+  const showNavbar = false;
 
   return (
     <div className="min-h-screen w-full relative">

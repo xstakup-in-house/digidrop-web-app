@@ -14,6 +14,20 @@ const Navbar: React.FC = () => {
   const [isFAQDialogOpen, setIsFAQDialogOpen] = useState(false)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -34,7 +48,11 @@ const Navbar: React.FC = () => {
   return (
     <>
       {/* ===== HEADER ===== */}
-      <header className="sticky top-0 z-50 h-16 w-full bg-[#0a0b1c]/70 backdrop-blur-md font-chakra text-gray-200">
+      <header className={`fixed top-0 left-0 z-50 h-16 w-full transition-all duration-300 font-chakra text-gray-200 ${
+        isScrolled 
+          ? "bg-[#0a0b1c]/50 backdrop-blur-md border-b border-white/10" 
+          : "bg-transparent backdrop-blur-none border-b border-transparent"
+      }`}>
         <div className="container mx-auto flex h-full items-center justify-between px-4 sm:px-6 lg:px-8">
           
           {/* Logo Section */}

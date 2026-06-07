@@ -9,9 +9,18 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '375px',
+      },
         
         fontFamily: {
             chakra: ["var(--font-chakra)"],
+        },
+        spacing: {
+          'safe-top': 'var(--tg-safe-area-inset-top)',
+          'safe-bottom': 'var(--tg-safe-area-inset-bottom)',
+          'safe-left': 'var(--tg-safe-area-inset-left)',
+          'safe-right': 'var(--tg-safe-area-inset-right)',
         },
         colors: {
             brandColor: '#CB6CE6',

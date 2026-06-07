@@ -34,7 +34,7 @@ const BCard = ({
       <div className="group flex h-full flex-col items-center rounded-2xl border border-white/10 bg-[#1C1C1C] p-8 text-center transition-all duration-300 hover:border-gray-400 hover:shadow-[0_0_25px_rgba(168,85,247,0.35)]">
         
         {/* Icon - Consistent Height Container */}
-        <div className="mb-6 flex h-[140px] w-full items-center justify-center">
+        <div className="mb-6 flex h-[90px] sm:h-[100px] w-full items-center justify-center">
           {icon}
         </div>
 
@@ -57,9 +57,9 @@ const BenefitSection: React.FC = () => {
   const cards = [
     {
       icon: (
-        <div className="relative h-[100px] w-[100px] sm:h-[120px] sm:w-[120px]">
+        <div className="relative h-[70px] w-[70px] sm:h-[80px] sm:w-[80px]">
         <Image
-          src="/assets_icon/22.png"
+          src="/assets_icon/22.webp"
           alt="Cosmic Curiosity"
           fill
           className="object-contain drop-shadow-lg"
@@ -71,9 +71,9 @@ const BenefitSection: React.FC = () => {
     },
     {
       icon: (
-        <div className="relative h-[100px] w-[100px] sm:h-[120px] sm:w-[120px]">
+        <div className="relative h-[70px] w-[70px] sm:h-[80px] sm:w-[80px]">
         <Image
-          src="/assets_icon/19.png"
+          src="/assets_icon/19.webp"
           alt="Gather Stardust"
           fill
           className="object-contain drop-shadow-lg"
@@ -85,9 +85,9 @@ const BenefitSection: React.FC = () => {
     },
     {
       icon: (
-        <div className="relative h-[100px] w-[100px] sm:h-[120px] sm:w-[120px]">
+        <div className="relative h-[70px] w-[70px] sm:h-[80px] sm:w-[80px]">
         <Image
-          src="/assets_icon/2.png"
+          src="/assets_icon/2.webp"
           alt="Eternal Bonds"
           fill
           className="object-contain drop-shadow-lg"
@@ -99,9 +99,9 @@ const BenefitSection: React.FC = () => {
     },
     {
       icon: (
-        <div className="relative h-[100px] w-[100px] sm:h-[120px] sm:w-[120px]">
+        <div className="relative h-[70px] w-[70px] sm:h-[80px] sm:w-[80px]">
         <Image
-          src="/assets_icon/3.png"
+          src="/assets_icon/3.webp"
           alt="Loyalty Honors"
           fill
           className="object-contain drop-shadow-lg"

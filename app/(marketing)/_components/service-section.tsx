@@ -16,7 +16,7 @@ const ServiceSection = () => {
   const steps = [
     {
       id: 1,
-      icon: "/assets_icon/4.png",
+      icon: "/assets_icon/4.webp",
       title: "Signal",
       topic: "(Awaken Your Comms)",
       text: "Connect your wallet (Metamask, Trust Wallet) and switch your network to BNB Chain (BEP20).",
@@ -24,7 +24,7 @@ const ServiceSection = () => {
     },
     {
       id: 2,
-      icon: "/assets_icon/15.png",
+      icon: "/assets_icon/15.webp",
       title: "Supply",
       topic: "(Select Your Engine)",
       text: "Choose your speed. Mint a Black (1x), White (2x), or Gold (4x) Passport.",
@@ -32,7 +32,7 @@ const ServiceSection = () => {
     },
     {
       id: 3,
-      icon: "/assets_icon/9.png",
+      icon: "/assets_icon/9.webp",
       title: "Action",
       topic: "(Embark on Quests)",
       text: "Dive into captivating challenges that spark creativity and community spirit.",
@@ -40,7 +40,7 @@ const ServiceSection = () => {
     },
     {
       id: 4,
-      icon: "/assets_icon/10.png",
+      icon: "/assets_icon/10.webp",
       title: "Ascension",
       topic: "(Rise in Rank)",
       text: "Complete quests and witness your Stardust shine among the brightest explorers.",
@@ -68,8 +68,8 @@ const ServiceSection = () => {
               className="group flex h-full flex-col items-center rounded-2xl border border-white/10 bg-[#1C1C1C] p-8 text-center transition-all duration-300 hover:border-gray-400 hover:shadow-[0_0_25px_rgba(168,85,247,0.35)]"
             >
               {/* Icon Wrapper for consistent height */}
-              <div className="mb-6 flex h-[120px] sm:h-[160px] w-full items-center justify-center">
-                <div className="relative h-[110px] w-[125px] sm:h-[130px] sm:w-[150px]">
+              <div className="mb-6 flex h-[90px] sm:h-[100px] w-full items-center justify-center">
+                <div className="relative h-[70px] w-[80px] sm:h-[80px] sm:w-[90px]">
                 <Image
                   src={step.icon}
                   alt={step.title}

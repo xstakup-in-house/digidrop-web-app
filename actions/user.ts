@@ -3,8 +3,12 @@
 import { apiClient } from "@/apiClient/client";
 import { setRefreshToken, setToken } from "@/lib/auth";
 
+const MOCK_WALLET = "0x0000000000000000000000000000000000000000";
 
 export async function getNonce() {
+    if (process.env.NODE_ENV === 'development') {
+        return { nonce: "dev-mock-nonce-123", message: "Welcome to Digidrops!\n\nSign this message to verify ownership of your wallet.\n\nNonce: dev-mock-nonce-123" };
+    }
     try {
         const res = await apiClient.get('/login', { withCredentials: true });
         return res.data
@@ -21,6 +25,14 @@ type LoginPayload = {
 };
 
 export async function walletLogin(walletAddress: string, signature: string, nonce: string, ref?: string) {
+  if (process.env.NODE_ENV === 'development') {
+    const mockToken = "dev-mock-jwt-token";
+    const mockRefresh = "dev-mock-refresh-token";
+    await setToken(mockToken);
+    await setRefreshToken(mockRefresh);
+    return { token: mockToken, refresh: mockRefresh, user: { id: "dev-user-1", wallet: walletAddress } };
+  }
+
   const payload: LoginPayload = {
     walletAddress,
     signature,
@@ -47,7 +59,10 @@ type RequestPayload={
 }
 
 export async function updateProfile(payload:RequestPayload) {
-   try {
+  if (process.env.NODE_ENV === 'development') {
+    return { success: true, names: payload.names, email: payload.email, avatar_id: payload.avatar_id };
+  }
+  try {
     const response = await apiClient.patch('/update-profile', payload);
     return response.data;
   } catch (error: any) {

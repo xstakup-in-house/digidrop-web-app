@@ -110,7 +110,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mb-4 inline-block rounded-full bg-blue-500/10 px-4 py-1.5 backdrop-blur-sm border border-blue-500/25"
+            className="mb-4 mt-6 sm:mt-8 inline-block rounded-full bg-blue-500/10 px-4 py-1.5 backdrop-blur-sm border border-blue-500/25"
           >
             <span className="text-sm font-bold uppercase tracking-wider text-blue-400 sm:text-base">
               Season 1 is live

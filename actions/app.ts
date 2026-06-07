@@ -8,6 +8,9 @@ type Payload={
 }
 
 export async function verifyPayment(payload:Payload) {
+    if (process.env.NODE_ENV === 'development') {
+        return { success: true, txHash: payload.txHash, newPassId: payload.newPassId };
+    }
     try {
         const res = await apiClient.post('/verify/payment', payload)
         return res.data
