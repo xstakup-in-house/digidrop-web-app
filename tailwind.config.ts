@@ -14,7 +14,8 @@ export default {
       },
         
         fontFamily: {
-            chakra: ["var(--font-chakra)"],
+            chakra: ["var(--font-chakra-petch)", "sans-serif"],
+            ui: ["var(--font-inter)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
         },
         spacing: {
           'safe-top': 'var(--tg-safe-area-inset-top)',

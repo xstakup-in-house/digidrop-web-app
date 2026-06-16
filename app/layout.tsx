@@ -1,6 +1,6 @@
 import React from "react"
 import type { Metadata, Viewport } from "next";
-import {  Chakra_Petch } from "next/font/google";
+import { Chakra_Petch, Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import ClientProviders from "@/providers/ClientProviders";
@@ -14,6 +14,12 @@ const chakra = Chakra_Petch({
   subsets: ["latin"],
   weight: ["300","400","500","600","700"],
   style: "normal"
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 
@@ -117,7 +123,7 @@ export default function RootLayout({
         <TelegramScript />
       </head>
       <body
-        className={`${chakra.variable} antialiased bg-[#1C1C1C] font-chakra`}
+        className={`${chakra.variable} ${inter.variable} antialiased bg-[#1C1C1C] font-ui`}
       >
         <Toaster position="bottom-right" richColors/>
         <ClientProviders>
