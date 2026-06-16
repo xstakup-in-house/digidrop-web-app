@@ -159,7 +159,7 @@ const DashboardUi = () => {
   return (
     <div 
       style={{ backgroundImage: "url('/assets/bg/dashboard%20bg.webp')" }}
-      className="min-h-screen w-full bg-[#0B0B0B] bg-cover bg-center bg-no-repeat bg-fixed text-white flex relative overflow-hidden font-chakra"
+      className="min-h-screen w-full bg-[#0B0B0B] bg-cover bg-center bg-no-repeat bg-fixed text-white flex relative overflow-hidden"
     >
       
       {/* Ambient glow */}

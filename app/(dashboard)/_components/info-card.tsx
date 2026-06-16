@@ -30,7 +30,7 @@ const InfoCard = ({ data, isLoading }: InfoProp) => {
         ) : (
           <Icon className="text-white h-5 w-5 sm:h-7 sm:w-7 shrink-0" />
         )}
-        <p className="text-xs sm:text-sm font-chakra text-white">{text}</p>
+        <p className="text-xs sm:text-sm text-white">{text}</p>
       </div>
 
       {/* CENTER */}
