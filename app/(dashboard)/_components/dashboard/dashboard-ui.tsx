@@ -639,7 +639,7 @@ const DashboardUi = () => {
                 <p className="text-center sm:text-left text-xs text-gray-500">
                   Need more help? Join our{" "}
                   <a 
-                    href="https://t.me/Digidrops_xyz" 
+                    href="https://t.me/DigidropsAI" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-purple-400 cursor-pointer underline hover:text-purple-500 transition-colors"

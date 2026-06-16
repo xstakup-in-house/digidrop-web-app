@@ -18,7 +18,7 @@ const MOCK_TASKS: TaskResponse[] = [
     icon: "/assets_icon/3.webp",
     title: "Join Digidrops Official Discord",
     points: 150,
-    external_link: "https://discord.gg/digidrops",
+    external_link: "https://discord.gg/digidropsai",
     task_type: "off_site",
     is_active: true,
     user_status: "pending"

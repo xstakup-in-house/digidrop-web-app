@@ -26,7 +26,7 @@ export async function startTask(taskId: number) {
     startMockTask(taskId);
     const mockLinks: Record<number, string> = {
       1: "https://x.com/Digidrops_xyz",
-      2: "https://discord.gg/digidrops",
+      2: "https://discord.gg/digidropsai",
       3: "/mint-pass"
     };
     return { redirect_url: mockLinks[taskId] || "https://x.com/Digidrops_xyz" };

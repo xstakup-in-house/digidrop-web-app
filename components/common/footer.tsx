@@ -75,11 +75,11 @@ const Footer = () => {
               <FaInstagram className="text-xl hover:text-pink-500 transition transform hover:scale-110" />
             </Link>
 
-            <Link href="https://discord.com/invite/Digidrops_xyz" target="_blank" aria-label="Discord">
+            <Link href="https://discord.com/invite/digidropsai" target="_blank" aria-label="Discord">
               <FaDiscord className="text-xl hover:text-indigo-500 transition transform hover:scale-110" />
             </Link>
 
-            <Link href="https://t.me/Digidrops_xyz" target="_blank" aria-label="Telegram">
+            <Link href="https://t.me/DigidropsAI" target="_blank" aria-label="Telegram">
               <FaTelegram className="text-xl hover:text-sky-500 transition transform hover:scale-110" />
             </Link>
           </div>

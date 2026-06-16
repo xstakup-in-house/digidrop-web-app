@@ -4,7 +4,9 @@ test.describe("Marketing Pages", () => {
   test("homepage loads with all sections", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" })
 
-    await expect(page.getByText(/prove you.*human/i).first()).toBeVisible()
+    const heading = page.getByText(/prove you.*human/i).first()
+    await heading.scrollIntoViewIfNeeded()
+    await expect(heading).toBeVisible()
     await expect(page.getByText("Season 1 is live")).toBeVisible()
     await expect(page.getByText("Mint Your Passport")).toBeVisible()
     await expect(page.getByText("Powered by BNB Chain")).toBeVisible()
