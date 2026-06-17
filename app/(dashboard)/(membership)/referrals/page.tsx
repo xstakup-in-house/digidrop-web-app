@@ -129,7 +129,7 @@ const ReferralSection = () => {
           
           {/* --- 1. HEADER SECTION --- */}
           <motion.header variants={itemVariants} className="space-y-6 text-center lg:text-left flex-1 max-w-xl">
-            <h1 className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text py-1.5 text-3xl font-extrabold leading-tight text-transparent sm:text-5xl md:text-6xl drop-shadow-[0_0_20px_rgba(168,85,247,0.18)] animate-gradient font-chakra">
+            <h1 className="text-landing-gradient py-1.5 text-3xl font-extrabold leading-tight sm:text-5xl md:text-6xl drop-shadow-[0_0_20px_rgba(168,85,247,0.18)] font-chakra">
               SHARE AND GATHER UNLIMITED STARDUST
             </h1>
             <p className="mx-auto lg:mx-0 max-w-xl text-sm sm:text-base leading-relaxed text-gray-300">
@@ -157,7 +157,7 @@ const ReferralSection = () => {
               <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
                 {/* Metric Card 1: Active Recruits */}
                 <div className="relative group/metric overflow-hidden rounded-2xl border border-white/10 bg-black/60 p-3 sm:p-4 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-300 hover:border-purple-500/30">
-                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 group-hover/metric:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-landing-gradient opacity-50 group-hover/metric:opacity-100 transition-opacity" />
                   
                   {/* Premium Game Icon 11.webp */}
                   <div className="relative h-8 w-8 mb-2 group-hover/metric:scale-110 transition-transform duration-300">
@@ -179,7 +179,7 @@ const ReferralSection = () => {
 
                 {/* Metric Card 2: Accumulated Rewards */}
                 <div className="relative group/metric overflow-hidden rounded-2xl border border-white/10 bg-black/60 p-3 sm:p-4 backdrop-blur-sm flex flex-col items-center justify-center transition-all duration-300 hover:border-purple-500/30">
-                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 opacity-50 group-hover/metric:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-landing-gradient opacity-50 group-hover/metric:opacity-100 transition-opacity" />
                   
                   {/* Premium Game Icon 7.webp */}
                   <div className="relative h-8 w-8 mb-2 group-hover/metric:scale-110 transition-transform duration-300">
@@ -229,7 +229,7 @@ const ReferralSection = () => {
                     "h-auto rounded-none py-3.5 px-6 sm:px-8 font-chakra text-base font-bold transition-all duration-300 border-t sm:border-t-0 sm:border-l border-white/10",
                     copied 
                       ? "bg-green-600 hover:bg-green-700 text-white shadow-[inset_0_0_15px_rgba(255,255,255,0.2)]" 
-                      : "bg-purple-600 hover:bg-purple-700 text-white"
+                      : "btn-landing-gradient"
                   )}
                 >
                   {copied ? <FaCheck className="mr-2 animate-bounce" /> : <FaLink className="mr-2" />}

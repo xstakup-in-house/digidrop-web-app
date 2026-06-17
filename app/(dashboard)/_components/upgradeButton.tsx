@@ -145,7 +145,7 @@ const currentPassId = userPassTuple ? Number(userPassTuple[0]) : 0;
         <button
           onClick={handleUpgrade}
           disabled={isWriting || isConfirming}
-          className="w-auto mx-auto block max-w-max px-8 py-2.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white shadow-md active:scale-95 transition-all"
+          className="w-auto mx-auto block max-w-max px-8 py-2.5 text-sm font-semibold rounded-xl btn-landing-gradient active:scale-95 transition-all"
         >
           {isWriting ? 'Approve upgrade...' : isConfirming ? 'Upgrading...' : 'Upgrade Now'}
         </button>

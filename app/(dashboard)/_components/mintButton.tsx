@@ -180,7 +180,7 @@ useEffect(() => {
         <button
           onClick={handleMint}
           disabled={localMinting || isWriting || isConfirming}
-          className="w-auto mx-auto block max-w-max px-8 py-2.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md active:scale-95 transition-all disabled:opacity-50"
+          className="w-auto mx-auto block max-w-max px-8 py-2.5 text-sm font-semibold rounded-xl btn-landing-gradient active:scale-95 transition-all disabled:opacity-50"
         >
            {isWriting
               ? 'Waiting for wallet…'

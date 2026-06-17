@@ -536,3 +536,44 @@
     --color-accent: #4a7fff;
   }
 }
+
+/* ==========================
+   LANDING PAGE ALIGNED STYLES
+   ========================== */
+.bg-landing-gradient {
+  background: linear-gradient(to right, #09154a, #a855f7, #CB6CE6);
+}
+
+.text-landing-gradient {
+  background: linear-gradient(to right, #09154a, #a855f7, #CB6CE6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-landing-gradient {
+  background: linear-gradient(to right, #09154a, #a855f7, #CB6CE6);
+  color: #ffffff;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(203, 108, 230, 0.3);
+}
+.btn-landing-gradient:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(203, 108, 230, 0.6);
+}
+.btn-landing-gradient:active {
+  transform: scale(0.98);
+}
+
+.btn-landing-outline {
+  border: 1px solid rgba(168, 85, 247, 0.5);
+  background-color: transparent;
+  color: #e5e7eb;
+  transition: all 0.3s ease;
+}
+.btn-landing-outline:hover {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #ffffff;
+}

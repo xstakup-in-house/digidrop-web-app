@@ -228,21 +228,21 @@ const DashboardUi = () => {
       <div className="flex-1 flex flex-col min-w-0 min-h-screen overflow-y-auto px-4 sm:px-8 py-6 relative z-10">
         
         {/* TOP NAVIGATION BAR */}
-        <header className="flex flex-col gap-4 pb-6 border-b border-white/5 font-chakra">
-          {/* Top Row: Mobile menu/logo (left) and Actions Row (right) - Always horizontal */}
+        <header className="pb-6 border-b border-white/5 font-chakra">
+          {/* Main Row: Logo (left) and Actions Row (right) - Always horizontal */}
           <div className="flex items-center justify-between w-full gap-2">
             
             {/* Left side: Mobile Menu + Logo (visible on mobile/tablet only) */}
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-2.5 lg:hidden">
               <button 
                 onClick={() => setIsSidebarOpen(true)}
-                className="p-1.5 sm:p-2 bg-black/50 border border-white/10 rounded-xl hover:bg-white/10 transition-all backdrop-blur-md relative z-30 shrink-0"
+                className="p-1.5 bg-black/50 border border-white/10 rounded-xl hover:bg-white/10 transition-all backdrop-blur-md relative z-30 shrink-0"
                 aria-label="Open menu"
               >
-                <Menu size={18} className="text-white" />
+                <Menu size={16} className="text-white" />
               </button>
               <div className="flex items-center gap-2 cursor-pointer shrink-0" onClick={() => router.push("/dashboard")}>
-                <img src="/assets/logo.png" alt="Digidrops Logo" className="h-8 w-auto object-contain" />
+                <img src="/assets/iconLogo.webp" alt="Digidrops Logo" className="h-7 w-auto object-contain" />
               </div>
             </div>
 
@@ -256,16 +256,16 @@ const DashboardUi = () => {
               />
             </div>
 
-            {/* Right side: Actions (Wallet, Beta, Bell, Avatar) - Desktop/Tablet */}
-            <div className="hidden md:flex items-center gap-1.5 sm:gap-3 flex-nowrap shrink-0 ml-auto">
-              {/* Search icon button on tablet only (hidden on desktop lg) */}
-              <button className="lg:hidden p-1.5 sm:p-2 bg-black/50 border border-white/10 backdrop-blur-md rounded-xl hover:bg-white/10 transition-all shrink-0">
+            {/* Right side: Actions (Wallet, Beta, Bell, Avatar) - Desktop/Tablet/Mobile */}
+            <div className="flex items-center gap-2 sm:gap-2.5 md:gap-3 flex-nowrap shrink-0 ml-auto">
+              {/* Search icon button on mobile/tablet (hidden on desktop lg) */}
+              <button className="lg:hidden p-1.5 bg-black/50 border border-white/10 backdrop-blur-md rounded-xl hover:bg-white/10 transition-all shrink-0">
                 <Search size={13} className="text-white" />
               </button>
 
               {/* Connected / Not Connected Wallet Display */}
-              <div className="flex items-center gap-1 bg-black/50 border border-white/10 backdrop-blur-md rounded-full px-2.5 py-1.5 min-w-0">
-                <p className={`text-[10px] sm:text-xs font-mono truncate max-w-[80px] sm:max-w-none ${profile?.wallet_addr ? 'text-gray-200' : 'text-gray-400'}`}>
+              <div className="flex items-center gap-1 bg-black/50 border border-white/10 backdrop-blur-md rounded-full px-2 py-1.5 sm:px-2.5 sm:py-1.5 min-w-0">
+                <p className={`text-[9px] sm:text-xs font-mono truncate max-w-[60px] xs:max-w-[80px] sm:max-w-none ${profile?.wallet_addr ? 'text-gray-200' : 'text-gray-400'}`}>
                   {profile?.wallet_addr 
                     ? `${profile.wallet_addr.slice(0, 4)}...${profile.wallet_addr.slice(-4)}` 
                     : "Not Connected"
@@ -277,18 +277,18 @@ const DashboardUi = () => {
                   aria-label="Copy wallet address"
                 >
                   {copiedWallet ? (
-                    <Check size={10} className="text-green-400" />
+                    <Check size={9} className="text-green-400" />
                   ) : (
-                    <Copy size={10} />
+                    <Copy size={9} />
                   )}
                 </button>
               </div>
 
-              {/* Beta Dialog Trigger Button */}
+              {/* Beta Dialog Trigger Button - Hidden on mobile viewports below sm to prevent layout choking */}
               <Button 
                 variant="outline" 
                 onClick={() => setIsBetaDialogOpen(true)} 
-                className="border-purple-500/50 bg-purple-400 text-black hover:bg-purple-500 text-[10px] sm:text-xs px-2.5 py-1.5 h-auto font-bold tracking-wider rounded-xl transition-all shadow-md shrink-0"
+                className="btn-landing-outline border-purple-500/50 text-[9px] sm:text-xs px-2 py-1 sm:px-2.5 sm:py-1.5 h-auto font-bold tracking-wider rounded-xl transition-all shrink-0 hidden xs:inline-flex"
               >
                 Beta
               </Button>
@@ -299,94 +299,28 @@ const DashboardUi = () => {
                   setIsNotificationsDialogOpen(true)
                   setHasUnreadNotifications(false)
                 }}
-                className="p-1.5 sm:p-2 bg-black/50 border border-white/10 backdrop-blur-md rounded-xl hover:bg-white/10 transition-all relative shrink-0"
+                className="p-1.5 bg-black/50 border border-white/10 backdrop-blur-md rounded-xl hover:bg-white/10 transition-all relative shrink-0"
               >
                 <Bell size={13} className="text-white" />
                 {hasUnreadNotifications && (
-                  <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#FF00FF] rounded-full" />
+                  <span className="absolute top-0.5 right-0.5 w-1 h-1 bg-[#FF00FF] rounded-full" />
                 )}
               </button>
 
               {/* Clickable Circular Profile Avatar */}
               <button 
                 onClick={() => setIsProfileDialogOpen(true)}
-                className="h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-gradient-to-tr from-[#FF00FF] to-[#CB6CE6] p-[1px] focus:outline-none hover:border-white transition-all duration-300 shrink-0"
+                className="h-7 w-7 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-landing-gradient p-[1px] focus:outline-none hover:border-white transition-all duration-300 shrink-0"
               >
                 <div className="w-full h-full rounded-full bg-[#0A0A12] flex items-center justify-center overflow-hidden">
                   {profile?.avatar_url ? (
                     <img src={profile.avatar_url} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
-                    <User size={13} className="text-[#CB6CE6]" />
+                    <User size={12} className="text-[#CB6CE6]" />
                   )}
                 </div>
               </button>
             </div>
-          </div>
-
-          {/* Not Connected and its gang on mobile (displayed in a separate line below Menu + Logo) */}
-          <div className="flex md:hidden items-center justify-center gap-2.5 w-full mt-2">
-            {/* Search icon button on mobile only */}
-            <button className="p-1.5 sm:p-2 bg-black/50 border border-white/10 backdrop-blur-md rounded-xl hover:bg-white/10 transition-all shrink-0">
-              <Search size={13} className="text-white" />
-            </button>
-
-            {/* Connected / Not Connected Wallet Display */}
-            <div className="flex items-center gap-1 bg-black/50 border border-white/10 backdrop-blur-md rounded-full px-2.5 py-1.5 min-w-0">
-              <p className={`text-[9px] sm:text-xs font-mono truncate max-w-[80px] sm:max-w-none ${profile?.wallet_addr ? 'text-gray-200' : 'text-gray-400'}`}>
-                {profile?.wallet_addr 
-                  ? `${profile.wallet_addr.slice(0, 4)}...${profile.wallet_addr.slice(-4)}` 
-                  : "Not Connected"
-                }
-              </p>
-              <button 
-                onClick={handleCopyWallet}
-                className="text-gray-400 hover:text-white transition-colors shrink-0"
-                aria-label="Copy wallet address"
-              >
-                {copiedWallet ? (
-                  <Check size={10} className="text-green-400" />
-                ) : (
-                  <Copy size={10} />
-                )}
-              </button>
-            </div>
-
-            {/* Beta Dialog Trigger Button */}
-            <Button 
-              variant="outline" 
-              onClick={() => setIsBetaDialogOpen(true)} 
-              className="border-purple-500/50 bg-purple-400 text-black hover:bg-purple-500 text-[9px] sm:text-xs px-2.5 py-1.5 h-auto font-bold tracking-wider rounded-xl transition-all shadow-md shrink-0"
-            >
-              Beta
-            </Button>
-
-            {/* Notification Bell */}
-            <button 
-              onClick={() => {
-                setIsNotificationsDialogOpen(true)
-                setHasUnreadNotifications(false)
-              }}
-              className="p-1.5 sm:p-2 bg-black/50 border border-white/10 backdrop-blur-md rounded-xl hover:bg-white/10 transition-all relative shrink-0"
-            >
-              <Bell size={13} className="text-white" />
-              {hasUnreadNotifications && (
-                <span className="absolute top-1 right-1 w-1.5 h-1.5 bg-[#FF00FF] rounded-full" />
-              )}
-            </button>
-
-            {/* Clickable Circular Profile Avatar */}
-            <button 
-              onClick={() => setIsProfileDialogOpen(true)}
-              className="h-8 w-8 sm:h-9 sm:w-9 rounded-full overflow-hidden border border-white/20 bg-gradient-to-tr from-[#FF00FF] to-[#CB6CE6] p-[1px] focus:outline-none hover:border-white transition-all duration-300 shrink-0"
-            >
-              <div className="w-full h-full rounded-full bg-[#0A0A12] flex items-center justify-center overflow-hidden">
-                {profile?.avatar_url ? (
-                  <img src={profile.avatar_url} alt="Profile" className="w-full h-full object-cover" />
-                ) : (
-                  <User size={13} className="text-[#CB6CE6]" />
-                )}
-              </div>
-            </button>
           </div>
         </header>
 
@@ -414,7 +348,7 @@ const DashboardUi = () => {
                 </div>
               </div>
 
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-wide font-chakra uppercase leading-tight bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent text-center mx-auto w-full">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-wide font-chakra uppercase leading-tight text-landing-gradient text-center mx-auto w-full">
                 Welcome {profile?.names || 'Voyager'}
               </h1>
               <p className="text-xs sm:text-sm md:text-base text-gray-200 max-w-md md:max-w-xl leading-relaxed text-center mx-auto">
@@ -428,7 +362,7 @@ const DashboardUi = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => router.push("/mint-pass")}
-                  className="px-6 py-2.5 rounded-xl text-xs uppercase font-extrabold bg-purple-600 hover:bg-purple-700 transition-all text-white shadow-lg shadow-purple-600/20"
+                  className="px-6 py-2.5 rounded-xl text-xs uppercase font-extrabold btn-landing-gradient"
                 >
                   Update Pass
                 </motion.button>
@@ -501,7 +435,6 @@ const DashboardUi = () => {
                     </div>
                     <div>
                       <p className="text-xs font-bold text-white">{act.name}</p>
-                      <p className="text-[9px] text-[#CB6CE6] uppercase tracking-wider font-extrabold">{act.role}</p>
                     </div>
                   </div>
                   <span className="text-xs font-bold text-emerald-400 font-chakra">
@@ -559,7 +492,7 @@ const DashboardUi = () => {
                 <div className="flex justify-center">
                   <Button 
                     onClick={() => setIsBetaDialogOpen(false)} 
-                    className="w-full bg-purple-600 hover:bg-purple-500 text-white"
+                    className="w-full btn-landing-gradient font-semibold rounded-xl py-2.5"
                   >
                     Close Transmission
                   </Button>
@@ -650,7 +583,7 @@ const DashboardUi = () => {
                 </p>
                 <Button 
                   onClick={() => setIsFAQDialogOpen(false)} 
-                  className="bg-purple-600 hover:bg-purple-500 font-semibold rounded-xl text-white w-full sm:w-auto"
+                  className="btn-landing-gradient font-semibold rounded-xl px-6 py-2.5 w-full sm:w-auto"
                 >
                   Close
                 </Button>
@@ -703,7 +636,7 @@ const DashboardUi = () => {
               <div className="border-t border-white/10 px-6 py-4 text-right bg-[#121212]">
                 <Button 
                   onClick={() => setIsHowToPlayDialogOpen(false)} 
-                  className="bg-purple-600 hover:bg-purple-500 font-semibold rounded-xl text-white"
+                  className="btn-landing-gradient font-semibold rounded-xl px-6 py-2.5"
                 >
                   Close
                 </Button>
@@ -799,7 +732,7 @@ const DashboardUi = () => {
               <div className="border-t border-white/10 p-4 sm:px-6 sm:py-4 bg-[#121212] flex justify-end">
                 <Button 
                   onClick={() => setIsNotificationsDialogOpen(false)} 
-                  className="bg-purple-600 hover:bg-purple-500 font-semibold rounded-xl text-white text-xs px-5 py-2.5 h-auto"
+                  className="btn-landing-gradient font-semibold rounded-xl text-xs px-5 py-2.5 h-auto"
                 >
                   Close
                 </Button>
