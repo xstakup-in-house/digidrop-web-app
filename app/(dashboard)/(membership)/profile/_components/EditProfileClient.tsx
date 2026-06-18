@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { Button } from "@/components/ui/button";
 import { updateProfile } from "@/actions/user";
-import { logout } from "@/lib/auth";
+import { logout } from "@/actions/auth";
 import { toast } from "sonner";
 import { Camera, ChevronDown, ChevronUp, Loader2, X } from "lucide-react";
 import { cn } from "@/lib/utils";

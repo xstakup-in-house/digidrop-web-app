@@ -53,7 +53,7 @@ const LoginClient = () => {
           toast.success('Logged in successfully')
           router.replace('/post-login')
         } catch (err) {
-          console.error(err)
+          console.error('Login failed')
           disconnect()
           toast.error('Login failed')
         } finally {

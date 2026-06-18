@@ -24,7 +24,13 @@ interface Pass {
 export default function UpgradeButton({ pass }: { pass: Pass }) {
   const router =useRouter()
   const { address, isConnected } = useAccount();
-  const { data: balance } = useBalance({ address });
+  const { data: balance } = useBalance({
+    address,
+    chainId: 97,
+    query: {
+      enabled: Boolean(address),
+    },
+  });
   const [mounted, setMounted] = useState(false);
   const formattedBalance = useMemo(() => {
     if (!balance) return '0';
@@ -100,10 +106,30 @@ const currentPassId = userPassTuple ? Number(userPassTuple[0]) : 0;
   // Verification after success
   useEffect(() => {
     if (isConfirmed && hash) {
-      toast.success('Pass upgraded successful 🎉');
-      router.replace('/dashboard');
+      toast.success('Pass upgraded successfully 🎉');
+
+      sessionStorage.setItem('pendingTxHash', hash);
+      sessionStorage.setItem('pendingPassId', String(pass.pass_id));
+      sessionStorage.setItem('pendingIsUpgrade', 'true');
+
+      // Fire-and-forget backend sync
+      fetch('/api/verify-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          txHash: hash,
+          newPassId: pass.pass_id,
+          isUpgrade: true,
+        }),
+      }).catch((err) =>
+        console.warn('[Upgrade] verifyPayment failed, confirm page will retry:', err)
+      );
+
+      router.replace('/mint/confirm');
     }
-  }, [isConfirmed, hash]);
+  }, [isConfirmed, hash, router, pass.pass_id]);
 
 
 

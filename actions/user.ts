@@ -44,7 +44,7 @@ export async function walletLogin(walletAddress: string, signature: string, nonc
     await setRefreshToken(data.refresh);
     return data;
   } catch (error: any) {
-    console.error('walletLogin error:', error.response?.data || error);
+    console.error('walletLogin error');
     throw new Error('Login failed');
   }
 }

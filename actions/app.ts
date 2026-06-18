@@ -1,3 +1,5 @@
+'use server';
+
 import { apiClient } from "@/apiClient/client"
 import { startMockTask, completeMockTask } from "@/app/data/tasks/onsite-task"
 
@@ -15,7 +17,7 @@ export async function verifyPayment(payload:Payload) {
         const res = await apiClient.post('/verify/payment', payload)
         return res.data
     } catch (error:any) {
-        console.error('payment verification error:', error.response?.data || error);
+        console.error('payment verification error');
         throw new Error('Payment verification failed');
     }
 }
@@ -35,7 +37,7 @@ export async function startTask(taskId: number) {
     const res = await apiClient.post(`/tasks/${taskId}/start`);
     return res.data;
   } catch (error: any) {
-    console.error('Start task error:', error?.response?.data || error);
+    console.error('Start task error');
     throw new Error(
       error?.response?.data?.error || 'Failed to start task'
     );
@@ -51,7 +53,7 @@ export async function completeTask(taskId: number) {
     const res = await apiClient.post(`/tasks/${taskId}/completed`);
     return res.data;
   } catch (error: any) {
-    console.error('Complete task error:', error?.response?.data || error);
+    console.error('Complete task error');
     throw new Error(
       error?.response?.data?.error || 'Failed to complete task'
     );

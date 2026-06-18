@@ -1,5 +1,3 @@
-'use server'; // Server-only
-
 import { cookies } from 'next/headers';
 
 export async function getToken() {
@@ -42,9 +40,4 @@ export async function getRefreshToken() {
   const refreshToken = cookieStore.get('refreshToken');
   return refreshToken?.value || null;
 }
-
-export async function logout() {
-  const cookieStore = await cookies();
-  cookieStore.delete('accessToken');
-  cookieStore.delete('refreshToken');
-}
+

@@ -4,12 +4,13 @@
 import { useEffect, useState } from 'react';
 import PassNFT_ABI from '@/contract/abi.json';
 import { toast } from 'sonner';
-import { useAccount, useBalance, useWriteContract, usePublicClient, useDisconnect, useSwitchChain, useReadContract, useWaitForTransactionReceipt } from 'wagmi';
+import { useAccount, useBalance, useWriteContract, useDisconnect, useSwitchChain, useReadContract, useWaitForTransactionReceipt } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import { useRouter } from 'next/navigation';
 import { PassInfo } from '@/types/response-type';
 import { Button } from '@/components/ui/button';
 import { ConnectWalletButton } from '@/components/common/WalletConnectButton';
+
 
 
 
@@ -117,8 +118,24 @@ const resetMintState = () => {
 useEffect(() => {
   if (!txReceipt) return;
 
-  if (txReceipt.status === 'success') {
+  if (txReceipt.status === 'success' && hash) {
     toast.success('Mint successful 🎉');
+
+    // Store tx context in sessionStorage so the confirm page can retry verification
+    sessionStorage.setItem('pendingTxHash', hash);
+    sessionStorage.setItem('pendingPassId', String(pass.pass_id));
+
+    // Layer 1: Fire-and-forget immediate backend sync — do not await so UX is instant
+    fetch('/api/verify-payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ txHash: hash, newPassId: pass.pass_id, isUpgrade: false }),
+    }).catch(
+      (err) => console.warn('[Layer1] verifyPayment failed, confirm page will retry:', err)
+    );
+
     router.replace('/mint/confirm');
   }
 
@@ -126,7 +143,7 @@ useEffect(() => {
     toast.error('You already have a pass');
     resetMintState();
   }
-}, [txReceipt, router]);
+}, [txReceipt, router, hash, pass.pass_id]);
    
 
   if (isConnecting && balanceLoading) {
