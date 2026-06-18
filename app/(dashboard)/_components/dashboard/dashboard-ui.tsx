@@ -351,8 +351,8 @@ const DashboardUi = () => {
               <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-wide font-chakra uppercase leading-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 text-center mx-auto w-full">
                 Welcome {profile?.names || 'Voyager'}
               </h1>
-              <p className="text-xs sm:text-sm md:text-base text-gray-200 max-w-md md:max-w-xl leading-relaxed text-center mx-auto">
-                You are a pioneer copilot, engage continuously with our quest and keep broadcasting everything on our official digidrops channels as we collectively growing our digiverse and you keep gathering unlimited stardust and continuously build your reputation.
+              <p className="text-xs sm:text-sm md:text-base text-gray-200 max-w-md md:max-w-2xl leading-relaxed text-center mx-auto">
+                You are a Pioneer Copilot. Engage continuously with our quest, refer to gather more stardust and keep broadcasting everything on our official Digidrops channels as we collectively grow our digiverse through Season 1. Continuously build your reputation to dominate the leaderboard and get positioned for community rewards before we transition into Phase 2 and deploy our decentralized AI data workforce.
               </p>
             </div>
 
