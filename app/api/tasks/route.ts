@@ -1,8 +1,10 @@
 import { getNewTasks } from "@/app/data/tasks/onsite-task"
 
-
-
 export async function GET(){
-    const data = await getNewTasks()
-    return Response.json(data)
+    try {
+        const data = await getNewTasks();
+        return Response.json(data);
+    } catch (error: any) {
+        return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 }
