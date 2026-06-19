@@ -35,7 +35,7 @@ export async function startTask(taskId: number) {
   }
   try {
     const res = await apiClient.post(`/tasks/${taskId}/start`);
-    return res.data;
+    return { ...res.data, redirect_url: res.data.external_link };
   } catch (error: any) {
     console.error('Start task error');
     throw new Error(

@@ -38,9 +38,10 @@ function getStoredStartTime(taskId: number): number | null {
   }
 }
 
-function storeStartTime(taskId: number) {
+function storeStartTime(taskId: number, time?: number) {
   try {
-    localStorage.setItem(getStorageKey(taskId), String(Date.now()));
+    const val = time !== undefined ? time : Date.now();
+    localStorage.setItem(getStorageKey(taskId), String(val));
   } catch { /* storage blocked */ }
 }
 
@@ -84,7 +85,7 @@ const Task = ({ data }: { data: TaskResponse }) => {
         if (!isNaN(serverTs)) {
           startedAtMs = serverTs;
           // Keep localStorage in sync with server timestamp
-          storeStartTime(data.id);
+          storeStartTime(data.id, serverTs);
         }
       }
 
@@ -147,23 +148,33 @@ const Task = ({ data }: { data: TaskResponse }) => {
   }, [buttonState, data.id]);
 
   const handleStart = async () => {
+    let newWindow: Window | null = null;
+    if (data.task_type === 'off_site') {
+      newWindow = window.open('about:blank', '_blank', 'noopener,noreferrer');
+    }
+
     try {
       const res = await startTask.mutateAsync(`${data.id}`);
 
       if (res.redirect_url) {
         if (data.task_type === 'off_site') {
-          // Open the quest link in a new tab
-          window.open(res.redirect_url, '_blank', 'noopener,noreferrer');
+          if (newWindow) {
+            newWindow.location.href = res.redirect_url;
+          }
           // Record start time in localStorage (anti-cheat: persists across refresh)
           storeStartTime(data.id);
           setButtonState('verifying');
           setSecondsLeft(VERIFY_DURATION_MS / 1000);
         } else {
+          if (newWindow) newWindow.close();
           // on_site task — navigate within the app
           router.push(`${res.redirect_url}?taskId=${data.id}`);
         }
+      } else {
+        if (newWindow) newWindow.close();
       }
     } catch {
+      if (newWindow) newWindow.close();
       // Error handled by mutation; button stays in pending state
     }
   };

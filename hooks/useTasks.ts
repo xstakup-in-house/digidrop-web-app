@@ -4,6 +4,9 @@ async function fetchTasks() {
   const res = await fetch('/api/tasks', {
     cache: 'no-store',
   });
+  if (!res.ok) {
+    return [];
+  }
   return res.json();
 }
 
