@@ -79,6 +79,12 @@ const Navbar: React.FC = () => {
               >
                 FAQ
               </button>
+              <Link
+                href="/manifesto"
+                className="transition-colors hover:text-purple-400 text-gray-200"
+              >
+                Manifesto
+              </Link>
             </nav>
           </div>
 
@@ -144,6 +150,14 @@ const Navbar: React.FC = () => {
               >
                 FAQ
               </button>
+
+              <Link
+                href="/manifesto"
+                className="w-full text-right text-xl font-medium text-gray-100 hover:text-purple-400"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Manifesto
+              </Link>
 
               <div className="mt-4 w-full flex justify-end">
                 <Button

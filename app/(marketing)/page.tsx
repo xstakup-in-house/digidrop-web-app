@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 // Component Imports
 import Circular from "./_components/Circular"
 import ServiceSection from "./_components/service-section"
+import WhatWeDoSection from "./_components/what-we-do-section"
 import BrandSupport from "./_components/brand-section"
 import FAQ from "./_components/faq-section"
 import LogoMark from "./_components/logo-mark"
@@ -123,9 +124,12 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-4xl bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text bg-[200%_auto] py-2 text-4xl font-extrabold leading-[1.15] text-transparent animate-gradient sm:text-5xl md:text-7xl drop-shadow-[0_0_35px_rgba(168,85,247,0.15)]"
+            className="max-w-4xl bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text bg-[200%_auto] py-2 text-4xl font-extrabold leading-[1.15] text-transparent animate-gradient sm:text-5xl md:text-7xl drop-shadow-[0_0_35px_rgba(168,85,247,0.15)] flex flex-col items-center gap-2"
           >
-            Prove You're Human. <br className="hidden sm:block" /> <Typewriter text="Secure Your Future." />
+            <span>The Human Data Layer for Web3 AI</span>
+            <span className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-wide uppercase mt-2 block">
+              <Typewriter text="AI SHOULD LEARN FROM HUMANS" />
+            </span>
           </motion.h1>
 
           {/* Description */}
@@ -137,8 +141,7 @@ export default function Home() {
             transition={{ delay: 0.2 }}
             className="mt-6 max-w-2xl text-base font-medium leading-relaxed text-gray-300 sm:text-lg md:text-xl"
           >
-            Mint your Soulbound Passport on BNB Chain, complete quests, and climb the leaderboard.
-            Build your verified reputation today to unlock the decentralized AI gig economy of tomorrow.
+            Digidrops is building a decentralized network of verified humans contributing trusted signals, reputation, and intelligence for the next generation of AI systems.
           </motion.p>
 
           {/* Pass Images Grid (Mobile First Layout with Holographic Effects) */}
@@ -224,9 +227,9 @@ export default function Home() {
               </Link>
             </Button>
 
-            <div className="text-center">
-              <p className="text-[11px] font-semibold tracking-widest text-gray-400/80 uppercase sm:text-xs">
-                Powered by BNB Chain
+            <div className="text-center max-w-lg">
+              <p className="text-xs font-semibold tracking-normal text-gray-400/90 sm:text-sm">
+                Connect your wallet, mint your Pass, complete quests, earn Stardust, and build your reputation inside the Digiverse.
               </p>
             </div>
           </motion.div>
@@ -243,6 +246,7 @@ export default function Home() {
         */}
         <div className="bg-[url('/assets/bg/pattern%20bg.webp')] bg-cover bg-center bg-[#1C1C1C]/90 bg-blend-multiply">
           <Circular />
+          <WhatWeDoSection />
           <ServiceSection />
         </div>
         <BrandSupport />

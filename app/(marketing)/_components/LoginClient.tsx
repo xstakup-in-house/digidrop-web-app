@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // UI Imports
@@ -206,12 +207,20 @@ const LoginClient = () => {
               )}
             </AnimatePresence>
 
-            {/* Bottom hint */}
-            {!isConnected && (
-              <p className="text-center text-xs text-gray-500">
-                Use Metamask or Trust Wallet · BNB Chain
-              </p>
-            )}
+            {/* Bottom hint / Faucet link */}
+            <div className="flex flex-col items-center gap-2 mt-2">
+              {!isConnected ? (
+                <p className="text-center text-xs text-gray-500">
+                  Use Metamask or Trust Wallet · BNB Chain
+                </p>
+              ) : null}
+              <Link 
+                href="/testnet" 
+                className="text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors uppercase tracking-wider underline underline-offset-4"
+              >
+                Need testnet gas? Get Faucet
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>

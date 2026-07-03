@@ -5,7 +5,7 @@ test.describe("Responsive Layout", () => {
     await page.setViewportSize({ width: 375, height: 812 })
     await page.goto("/", { waitUntil: "domcontentloaded" })
 
-    await expect(page.getByRole("heading", { name: /prove you.*human/i })).toBeVisible()
+    await expect(page.getByText(/AI Should Learn From Humans/i)).toBeVisible()
     await expect(page.getByRole("link", { name: /mint your passport/i })).toBeVisible()
   })
 

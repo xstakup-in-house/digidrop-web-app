@@ -92,9 +92,9 @@ const Footer = () => {
 
       {/* Disclaimer */}
       <div className="px-4 py-4 text-center text-gray-400 text-sm leading-relaxed max-w-6xl mx-auto">
-        Disclaimer: Digidrops Soulbound Tokens (SBTs) are non-transferable digital
-        utility credentials used for platform access and identity. They have no
-        market value, cannot be resold, and strictly represent membership within
+        Disclaimer: Digidrops Soulbound Tokens (SBTs) and Stardust points are non-transferable digital
+        utility credentials and participation metrics used for platform access, reputation, and identity. They have no
+        market/monetary value, cannot be resold or traded, and strictly represent membership within
         the community. The minting fee covers protocol maintenance and ecosystem
         development. This is a purchase of a digital good, not an investment
         contract.

@@ -20,9 +20,20 @@ const BuyPage = async () => {
                     <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold font-chakra uppercase tracking-wider mb-2 lg:mb-1">
                         Choose Your Path
                     </h1>
-                    <p className="text-xs sm:text-sm lg:text-xs xl:text-sm font-medium font-chakra text-gray-300 tracking-wide">
-                        Select your <span className='text-brandColor drop-shadow-sm'>soulbound passport</span> to the Digiverse
+                    <p className="text-xs sm:text-sm lg:text-xs xl:text-sm font-medium font-chakra text-gray-300 tracking-wide mb-3">
+                        Your Pass is your contributor identity inside the Digiverse.
                     </p>
+                    <p className="text-xs sm:text-sm font-medium font-chakra text-gray-400 tracking-wide leading-relaxed mb-4">
+                        Mint a Pass to access the Digidrops dashboard, complete quests, earn Stardust, join the leaderboard, and begin building your reputation as a verified contributor.
+                    </p>
+                    <div className="flex justify-center">
+                        <a 
+                            href="/testnet" 
+                            className="inline-flex items-center gap-1 text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors uppercase tracking-wider underline underline-offset-4"
+                        >
+                            Need testnet gas? Get Faucet
+                        </a>
+                    </div>
                 </header>
 
                 {/* Cards Grid: Mobile (1 col) -> Tablet (2 col) -> Desktop (Fit content/3 col) */}
