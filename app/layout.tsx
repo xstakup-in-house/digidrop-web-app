@@ -32,26 +32,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Digidrops | The Sybil-Resistant Human Layer of BNB Chain",
-  description: "Digidrops is the gamified infrastructure and sybil-resistant 'Human Layer' of the BNB Chain. Proving human identity via tiered Soulbound Passports (Black, White, Gold SBTs) to solve bot-driven Web3 growth and supply verified data for decentralized AI.",
+  title: "Digidrops — The Human Data Layer for Web3 AI",
+  description: "Digidrops is building a decentralized network of verified humans contributing trusted signals, reputation, and intelligence for the next generation of Web3 AI.",
   icons: {
     icon: "/assets/favicon (1).webp",
   },
-  keywords: [
-    "Digidrops",
-    "BNB Chain",
-    "Sybil Resistance",
-    "Soulbound Passport",
-    "SBT Passport",
-    "SocialFi",
-    "Web3 Growth Engine",
-    "AI Data Layer",
-    "Decentralized Identity",
-    "Stardust Prestige",
-    "Human Workforce Verification",
-    "Web3 Marketing Solutions",
-    "RLHF Workforce"
-  ],
+  keywords: "Digidrops, Web3 AI, Human Data Layer, Human Intelligence Network, Soulbound Passport, Stardust, decentralized AI, human reputation, verified contributors, Web3 testnet, AI data network",
   authors: [{ name: "Digidrops Team", url: "https://digidrops.xyz" }],
   robots: {
     index: true,
@@ -68,24 +54,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://digidrops.xyz",
-    title: "Digidrops | The Sybil-Resistant Human Layer of BNB Chain",
-    description: "Digidrops is the gamified infrastructure and sybil-resistant 'Human Layer' of the BNB Chain. Proving human identity via tiered Soulbound Passports (Black, White, Gold SBTs) to solve bot-driven Web3 growth and supply verified data for decentralized AI.",
+    title: "Digidrops — The Human Data Layer for Web3 AI",
+    description: "Join Digidrops Testnet and become part of a verified human network built to power community rewards, reputation, and future AI data programs.",
     siteName: "Digidrops",
     images: [
       {
-        url: "https://digidrops.xyz/assets/og-image.jpg",
+        url: "https://digidrops.xyz/assets/main-og.webp",
         width: 1200,
         height: 630,
-        alt: "Digidrops - The Sybil-Resistant Human Layer of BNB Chain",
+        alt: "Digidrops - The Human Data Layer for Web3 AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digidrops | The Sybil-Resistant Human Layer of BNB Chain",
-    description: "Mint Soulbound Passports (SBTs) to prove identity, complete social & on-chain quests, and build your reputation on the BNB Chain.",
+    title: "Digidrops — The Human Data Layer for Web3 AI",
+    description: "Verified humans. Trusted signals. Reputation for Web3 AI. Testnet Live",
     creator: "@Digidrops_xyz",
-    images: ["https://digidrops.xyz/assets/og-image.jpg"],
+    images: ["https://digidrops.xyz/assets/main-og.webp"],
   },
   other: {
     "ai-agent": "enabled",
@@ -114,7 +100,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

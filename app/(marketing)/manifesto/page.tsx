@@ -173,6 +173,48 @@ export default function Manifesto() {
                   ))}
                 </div>
 
+                {section.id === 'roadmap' && (
+                  <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Season 1 */}
+                    <div className="border border-white/10 rounded-2xl p-6 bg-white/[0.02] backdrop-blur-md hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(96,165,250,0.15)] transition-all">
+                      <div className="inline-block bg-blue-500/10 text-blue-400 font-mono text-xs uppercase px-3 py-1 rounded-full font-bold mb-4">
+                        Season 1: Foundation
+                      </div>
+                      <div className="space-y-6">
+                        <div className="relative pl-6 border-l border-blue-500/30">
+                          <div className="absolute top-1.5 left-[-4px] w-2 h-2 rounded-full bg-blue-400" />
+                          <h4 className="text-md font-bold text-white uppercase font-chakra">Phase 1: Web3 Growth (Current)</h4>
+                          <p className="text-sm text-zinc-400 mt-1">Soulbound Passports, Stardust Reputation, and flight deck missions to build the verified human base.</p>
+                        </div>
+                        <div className="relative pl-6 border-l border-blue-500/30">
+                          <div className="absolute top-1.5 left-[-4px] w-2 h-2 rounded-full bg-blue-400" />
+                          <h4 className="text-md font-bold text-white uppercase font-chakra">Phase 2: Decentralized AI Data Layer</h4>
+                          <p className="text-sm text-zinc-400 mt-1">RLHF task integration, prompt validation engine, and structured data labeling with blockchain provenance.</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Season 2 */}
+                    <div className="border border-white/10 rounded-2xl p-6 bg-white/[0.02] backdrop-blur-md hover:border-purple-500/50 hover:shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all">
+                      <div className="inline-block bg-purple-500/10 text-purple-400 font-mono text-xs uppercase px-3 py-1 rounded-full font-bold mb-4">
+                        Season 2: Expansion
+                      </div>
+                      <div className="space-y-6">
+                        <div className="relative pl-6 border-l border-purple-500/30">
+                          <div className="absolute top-1.5 left-[-4px] w-2 h-2 rounded-full bg-purple-400" />
+                          <h4 className="text-md font-bold text-white uppercase font-chakra">Phase 3: B2B Dataset Marketplace</h4>
+                          <p className="text-sm text-zinc-400 mt-1">Consensus-based dataset scoring, reputation aging models, and high-trust biometric integrations.</p>
+                        </div>
+                        <div className="relative pl-6 border-l border-purple-500/30">
+                          <div className="absolute top-1.5 left-[-4px] w-2 h-2 rounded-full bg-purple-400" />
+                          <h4 className="text-md font-bold text-white uppercase font-chakra">Phase 4: Global Human Data Protocol</h4>
+                          <p className="text-sm text-zinc-400 mt-1">Decentralized platform governance, multi-chain identity anchoring, and open protocol for AI dataset licensing.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {section.bulletPoints && (
                   <div className="mt-8 p-6 bg-black/50 border border-white/10 rounded-2xl backdrop-blur-md">
                     <h4 className="text-sm font-bold uppercase tracking-wider text-white mb-4 font-mono">

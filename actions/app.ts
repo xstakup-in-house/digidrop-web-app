@@ -1,61 +1,66 @@
 'use server';
 
-import { apiClient } from "@/apiClient/client"
-import { startMockTask, completeMockTask } from "@/app/data/tasks/onsite-task"
+import { apiClient } from "@/apiClient/client";
 
-type Payload={
-    txHash: string,
-    newPassId: number
-    isUpgrade: boolean
+export interface VerifyPaymentPayload {
+  txHash: string;
+  newPassId: number;
+  isUpgrade: boolean;
 }
 
-export async function verifyPayment(payload:Payload) {
-    if (process.env.NODE_ENV === 'development') {
-        return { success: true, txHash: payload.txHash, newPassId: payload.newPassId };
-    }
-    try {
-        const res = await apiClient.post('/verify/payment', payload)
-        return res.data
-    } catch (error:any) {
-        console.error('payment verification error');
-        throw new Error('Payment verification failed');
-    }
+export interface StartTaskResponse {
+  task_type: "on_site" | "off_site";
+  external_link: string;
+  redirect_url: string;
 }
 
+export interface CompleteTaskResponse {
+  success: boolean;
+  points_awarded: number;
+}
 
-export async function startTask(taskId: number) {
-  if (process.env.NODE_ENV === 'development') {
-    startMockTask(taskId);
-    const mockLinks: Record<number, string> = {
-      1: "https://x.com/Digidrops_xyz",
-      2: "https://discord.gg/digidropsai",
-      3: "/mint-pass"
-    };
-    return { redirect_url: mockLinks[taskId] || "https://x.com/Digidrops_xyz" };
+/**
+ * Sends transaction hash and pass target details to the backend API to confirm and verify the payment on-chain.
+ */
+export async function verifyPayment(payload: VerifyPaymentPayload): Promise<{ success: boolean }> {
+  try {
+    const res = await apiClient.post('/verify/payment', payload);
+    return res.data;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Payment verification failed";
+    console.error(`[verifyPayment] Error: ${message}`);
+    throw new Error(message);
   }
+}
+
+/**
+ * Notifies the backend to start a specific marketing quest task.
+ */
+export async function startTask(taskId: number): Promise<StartTaskResponse> {
   try {
     const res = await apiClient.post(`/tasks/${taskId}/start`);
-    return { ...res.data, redirect_url: res.data.external_link };
+    return { 
+      task_type: res.data.task_type,
+      external_link: res.data.external_link,
+      redirect_url: res.data.external_link 
+    };
   } catch (error: any) {
-    console.error('Start task error');
-    throw new Error(
-      error?.response?.data?.error || 'Failed to start task'
-    );
+    const errMsg = error?.response?.data?.error || 'Failed to start task';
+    console.error(`[startTask] Error: ${errMsg}`);
+    throw new Error(errMsg);
   }
 }
 
-export async function completeTask(taskId: number) {
-  if (process.env.NODE_ENV === 'development') {
-    completeMockTask(taskId);
-    return { success: true };
-  }
+/**
+ * Notifies the backend to check and verify quest completion status and award points.
+ */
+export async function completeTask(taskId: number): Promise<CompleteTaskResponse> {
   try {
     const res = await apiClient.post(`/tasks/${taskId}/completed`);
     return res.data;
   } catch (error: any) {
-    console.error('Complete task error');
-    throw new Error(
-      error?.response?.data?.error || 'Failed to complete task'
-    );
+    const errMsg = error?.response?.data?.error || 'Failed to complete task';
+    console.error(`[completeTask] Error: ${errMsg}`);
+    throw new Error(errMsg);
   }
 }

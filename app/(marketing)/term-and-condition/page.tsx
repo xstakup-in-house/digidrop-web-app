@@ -55,6 +55,25 @@ const SECTIONS: TermSection[] = [
       'Your wallet, assets, and identity remain entirely yours.',
     ],
   },
+  {
+    id: 'contributor-agreement',
+    title: '5. Contributor Agreement',
+    content: [
+      'By participating in tasks, flights, or validation campaigns (including data labeling, Reinforcement Learning from Human Feedback (RLHF), and consensus validation):',
+      '• You warrant that all inputs, annotations, and labels you submit are your original intellectual contributions and contain no malicious, deceptive, or infringing material.',
+      '• You grant Digidrops and its affiliates a perpetual, irrevocable, worldwide, royalty-free, fully paid-up sublicensable license to utilize, modify, package, compile, and distribute your submissions for dataset training and AI application building.',
+      '• You agree that consensus scoring algorithms will determine validity, and decisions on quest completions or reputational outcomes are final.',
+    ],
+  },
+  {
+    id: 'rewards-policy',
+    title: '6. Community Rewards Policy',
+    content: [
+      'Stardust points, multipliers, status badges, and Soulbound Passports (SBTs) are non-monetary participation metrics.',
+      '• Stardust points and status indicators have zero cash, monetary, or market value and cannot be redeemed, sold, or exchanged for real-world currency or assets.',
+      '• All rewards and allocations are purely discretionary, exist solely to reflect community reputation, and do not constitute any form of investment or equity right.',
+    ],
+  },
 ];
 
 export default function TermsPage() {
