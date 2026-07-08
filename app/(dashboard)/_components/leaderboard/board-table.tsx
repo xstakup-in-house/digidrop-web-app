@@ -10,6 +10,7 @@ type LeaderBoard = {
   wallet: string
   scored_point: number
   avatar?: string | null
+  avatar_url?: string | null
   color?: string
 }
 
@@ -119,8 +120,8 @@ const BoardTable = () => {
                   </motion.div>
  
                   <div className={`w-10 h-10 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 bg-black/40 ${isGold ? "border-yellow-400" : isSilver ? "border-slate-300" : "border-amber-500"} flex items-center justify-center shadow-lg`}>
-                    {pilot.avatar ? (
-                      <img src={pilot.avatar} alt="avatar" className="w-full h-full object-cover" />
+                    {pilot.avatar || pilot.avatar_url ? (
+                      <img src={pilot.avatar || pilot.avatar_url || ''} alt="avatar" className="w-full h-full object-cover" />
                     ) : (
                       <div 
                         style={{ background: `linear-gradient(135deg, ${COLORS[(pilot.rank - 1) % COLORS.length]} 0%, #111 100%)` }}
@@ -205,6 +206,7 @@ type RowProp = {
     wallet: string
     scored_point: number
     avatar?: string | null
+    avatar_url?: string | null
     color?: string
   }
 }
@@ -226,9 +228,9 @@ const TableRow = ({ data }: RowProp) => {
       {/* 2. Player Col (hidden on mobile, 25% centered on desktop) */}
       <td className="hidden sm:table-cell w-1/4 px-2 sm:px-4 py-3 text-center">
         <div className="flex items-center gap-2.5 justify-center w-fit mx-auto min-w-0">
-          {data.avatar ? (
+          {data.avatar || data.avatar_url ? (
             <img
-              src={data.avatar}
+              src={data.avatar || data.avatar_url || ''}
               alt="avatar"
               className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover border border-white/30 transition-transform duration-300 group-hover:scale-110 shrink-0"
             />
