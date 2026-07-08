@@ -155,11 +155,12 @@ const Task = ({ data }: { data: TaskResponse }) => {
 
     try {
       const res = await startTask.mutateAsync(`${data.id}`);
+      const redirectUrl = res.redirect_url || data.external_link;
 
-      if (res.redirect_url) {
+      if (redirectUrl) {
         if (data.task_type === 'off_site') {
           if (newWindow) {
-            newWindow.location.href = res.redirect_url;
+            newWindow.location.href = redirectUrl;
           }
           // Record start time in localStorage (anti-cheat: persists across refresh)
           storeStartTime(data.id);
@@ -168,7 +169,7 @@ const Task = ({ data }: { data: TaskResponse }) => {
         } else {
           if (newWindow) newWindow.close();
           // on_site task — navigate within the app
-          router.push(`${res.redirect_url}?taskId=${data.id}`);
+          router.push(`${redirectUrl}?taskId=${data.id}`);
         }
       } else {
         if (newWindow) newWindow.close();
